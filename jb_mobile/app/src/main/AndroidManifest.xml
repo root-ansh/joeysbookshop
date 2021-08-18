@@ -3,14 +3,15 @@
     package="work.curioustools.jb_mobile">
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name=".JoeBookShopApp"
         android:theme="@style/Theme.Jb_mobile">
         <activity
-            android:name=".DashboardActivity"
+            android:name=".modules.dashboard.ui.DashboardActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

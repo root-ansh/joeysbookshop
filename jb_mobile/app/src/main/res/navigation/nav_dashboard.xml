@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_dashboard"
+    app:startDestination="@id/dashBoardFragment">
+
+    <fragment
+        android:id="@+id/dashBoardFragment"
+        android:name="work.curioustools.jb_mobile.modules.dashboard.ui.DashBoardFragment"
+        tools:layout="@layout/fragment_dashboard"
+        android:label="DashBoardFragment" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="work.curioustools.jb_mobile.modules.search.ui.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search"
+        />
+    <fragment
+        android:id="@+id/profileFragment"
+        tools:layout="@layout/fragment_profile"
+        android:name="work.curioustools.jb_mobile.modules.profile.ui.ProfileFragment"
+        android:label="ProfileFragment" />
+</navigation>

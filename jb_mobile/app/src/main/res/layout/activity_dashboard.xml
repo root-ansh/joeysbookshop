@@ -4,6 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DashboardActivity">
+    tools:context=".modules.dashboard.ui.DashboardActivity">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/dashboardNavHost"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toTopOf="@id/navbarBg"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/nav_dashboard" />
+
+    <View
+        android:id="@+id/navbarBg"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:background="@color/navbar_color"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <me.ibrahimsn.lib.SmoothBottomBar
+        android:id="@+id/navBar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:elevation="12dp"
+        android:padding="8dp"
+        app:backgroundColor="@color/navbar_color"
+        app:cornerRadius="16dp"
+        app:iconSize="16dp"
+        app:itemFontFamily="@font/friends_font"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/menu_dashboard"
+        app:textColor="@color/navbar_textcolor" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

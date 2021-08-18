@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="navbar_color">#FFEB3B</color>
+    <color name="navbar_textcolor">#000000</color>
+    <color name="d_white_n_black">#000</color>
+    <color name="d_blue_n_white">#ffffff</color>
+</resources>
