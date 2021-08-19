@@ -15,7 +15,7 @@ abstract class DashboardBinder {
 
     @Binds
     @ViewModelScoped
-    abstract fun bindAuthRepo(dashboardRepoImpl: DashboardRepoImpl): DashboardRepo
+    abstract fun bindDashboardRepo(dashboardRepoImpl: DashboardRepoImpl): DashboardRepo
 
 
 

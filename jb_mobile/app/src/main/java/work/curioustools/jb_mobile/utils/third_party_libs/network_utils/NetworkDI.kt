@@ -30,25 +30,25 @@ class NetworkDI {
     fun getMoshi(): Moshi = Moshi.Builder().build()
 
     @Singleton @Provides
-    fun getGsonConvertor(gson: Gson): GsonConverterFactory? = GsonConverterFactory.create(gson)
+    fun getGsonConvertor(gson: Gson): GsonConverterFactory = GsonConverterFactory.create(gson)
 
     @Singleton @Provides
-    fun getMoshiConvertor(moshi: Moshi): MoshiConverterFactory? = MoshiConverterFactory.create(moshi)
+    fun getMoshiConvertor(moshi: Moshi): MoshiConverterFactory = MoshiConverterFactory.create(moshi)
 
     @Singleton @Provides
-    fun getScalerConvertor(): ScalarsConverterFactory? = ScalarsConverterFactory.create()
+    fun getScalerConvertor(): ScalarsConverterFactory = ScalarsConverterFactory.create()
 
     @Singleton @Provides
-    fun getDefaultLogSeverity() = HttpLoggingInterceptor.Level.BODY
+    fun getDefaultLogSeverity(): HttpLoggingInterceptor.Level = HttpLoggingInterceptor.Level.BODY
 
     @Singleton @Provides
-    fun getLogInterceptor(severity: HttpLoggingInterceptor.Level) = HttpLoggingInterceptor().run {
+    fun getLogInterceptor(severity: HttpLoggingInterceptor.Level): HttpLoggingInterceptor = HttpLoggingInterceptor().run {
         level = severity
         this
     }
 
     @Singleton @Provides
-    fun getOkHttpClient(loggingInterceptor: HttpLoggingInterceptor) = OkHttpClient.Builder().run {
+    fun getOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient = OkHttpClient.Builder().run {
         connectTimeout(1, TimeUnit.MINUTES)
         writeTimeout(1, TimeUnit.MINUTES)
         readTimeout(1, TimeUnit.MINUTES)
@@ -58,7 +58,7 @@ class NetworkDI {
     }
 
     @Singleton @Provides
-    fun getTemporaryBaseUrl() = "https://www.google.com"
+    fun getTemporaryBaseUrl(): String = "https://www.google.com"
 
     @Singleton @Provides
     fun getRetrofitClient(
@@ -66,7 +66,7 @@ class NetworkDI {
         scalarConvertor: ScalarsConverterFactory,
         moshiConverter: MoshiConverterFactory,
         okHttpClient: OkHttpClient,
-    ): Retrofit? = Retrofit.Builder().run {
+    ): Retrofit = Retrofit.Builder().run {
         baseUrl(baseUrl)
         client(okHttpClient)
         addConverterFactory(scalarConvertor)
@@ -76,7 +76,7 @@ class NetworkDI {
 
 
     @Singleton @Provides @NetworkWithHeaders
-    fun getHeaderInterceptorWithHeaders() =
+    fun getHeaderInterceptorWithHeaders(): HeaderInterceptor =
         HeaderInterceptor(hashMapOf(HeaderInterceptor.HEADER_DUMMY_API_AUTH_PAIR))
 
 
@@ -84,7 +84,7 @@ class NetworkDI {
     fun getOkHttpClientWithHeaders(
         loggingInterceptor: HttpLoggingInterceptor,
         headerInterceptor: HeaderInterceptor
-    ) = OkHttpClient.Builder().run {
+    ): OkHttpClient = OkHttpClient.Builder().run {
         connectTimeout(1, TimeUnit.MINUTES)
         writeTimeout(1, TimeUnit.MINUTES)
         readTimeout(1, TimeUnit.MINUTES)
@@ -100,7 +100,7 @@ class NetworkDI {
         okHttpClientWithDummyHeaders: OkHttpClient,
         scalarConvertor: ScalarsConverterFactory,
         moshiConverter: MoshiConverterFactory,
-    ): Retrofit? = Retrofit.Builder().run {
+    ): Retrofit = Retrofit.Builder().run {
         baseUrl(baseUrl)
         client(okHttpClientWithDummyHeaders)
         addConverterFactory(scalarConvertor)

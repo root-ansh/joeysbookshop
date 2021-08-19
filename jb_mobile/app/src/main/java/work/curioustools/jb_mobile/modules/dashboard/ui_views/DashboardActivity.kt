@@ -1,6 +1,5 @@
 package work.curioustools.jb_mobile.modules.dashboard.ui_views
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.PopupMenu
 import work.curioustools.jb_mobile.R

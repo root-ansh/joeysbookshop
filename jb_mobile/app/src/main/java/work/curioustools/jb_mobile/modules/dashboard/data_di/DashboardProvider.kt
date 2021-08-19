@@ -9,7 +9,7 @@ import work.curioustools.jb_mobile.modules.dashboard.data_apis.DashboardApi
 import javax.inject.Singleton
 
 @Module @InstallIn(SingletonComponent::class)
-interface DashboardProvider {
+class DashboardProvider {
 
     @Singleton
     @Provides

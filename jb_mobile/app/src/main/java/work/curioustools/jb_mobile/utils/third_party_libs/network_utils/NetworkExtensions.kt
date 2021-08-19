@@ -1,5 +1,6 @@
 package work.curioustools.jb_mobile.utils.third_party_libs.network_utils
 
+import android.util.Log
 import retrofit2.Call
 import retrofit2.Response
 import java.util.*
@@ -24,6 +25,7 @@ fun <T> Call<T>.executeAndUnify(): BaseResponse<T> {
      * */
     return try {
         val response: Response<T?> = execute()
+        response.logRetrofitResponse()
         when {
             response.isSuccessful -> {
                 when (val body = response.body()) {
@@ -59,7 +61,7 @@ fun <T> Call<T>.executeAndUnify(): BaseResponse<T> {
             }
         }
     } catch (t: Throwable) {
-        BaseResponse.Failure(null, AppResponseStatus.UNRECOGNISED.code)
+        BaseResponse.Failure(null, AppResponseStatus.UNRECOGNISED.code,t)
     }
 
 }
@@ -109,23 +111,24 @@ inline fun <T> BaseResponse<T>.logResponse(onSuccess: (T) -> Unit = {}) {
 }
 
 fun <T> Response<T>?.logRetrofitResponse() {
+    val TAG = "RETROFIT>>"
     this?.let {
-        println("body = ${it.body()})")
-        println("it.code = ${it.code()} ")
-        println("it.isSuccessful = ${it.isSuccessful} ")
-        println("msg = ${it.message()}")
-        println("headers:")
-        it.headers().toMultimap().forEach { (key, value) -> println("\t $key : $value") }
-        println("it.errorBody = ${it.errorBody()} ")
-        println("it.raw request = ${it.raw().request} ")
-        println("it.raw request body= ${it.raw().request.body} ")
-        println("it.raw request headers= ${it.raw().request.headers} ")
-        println("it.raw response= ${it.raw()} ")
+        Log.e(TAG, "body = ${it.body()})")
+        Log.e(TAG, "it.code = ${it.code()} ")
+        Log.e(TAG, "it.isSuccessful = ${it.isSuccessful} ")
+        Log.e(TAG, "msg = ${it.message()}")
+        Log.e(TAG, "headers:")
+        it.headers().toMultimap().forEach { (key, value) -> Log.e(TAG, "\t $key : $value") }
+        Log.e(TAG, "it.errorBody = ${it.errorBody()} ")
+        Log.e(TAG, "it.raw request = ${it.raw().request} ")
+        Log.e(TAG, "it.raw request body= ${it.raw().request.body} ")
+        Log.e(TAG, "it.raw request headers= ${it.raw().request.headers} ")
+        Log.e(TAG, "it.raw response= ${it.raw()} ")
 
-        println("it.raw response body= ${it.raw().body} ")
-        println("it.raw response body msg= ${it.raw().message} ")
+        Log.e(TAG, "it.raw response body= ${it.raw().body} ")
+        Log.e(TAG, "it.raw response body msg= ${it.raw().message} ")
 
-        println("===========================================")
+        Log.e(TAG, "===========================================")
     }
 }
 /*

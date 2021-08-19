@@ -15,8 +15,9 @@ sealed class BaseResponse<T>(
     data class Failure<T>(
         val body: T? = null,
         override val statusCode: Int,
-    ) : BaseResponse<T>(statusCode, AppResponseStatus.getStatusMsgOrDefault(statusCode)) {
-        var exception: Throwable = Exception(statusMsg)
+        var exception: Throwable = Exception(AppResponseStatus.getStatusMsgOrDefault(statusCode))
+    ) : BaseResponse<T>(statusCode, exception.message?:"" ) {
+
 
         override fun toString(): String {
             return "Failure(body=$body, statusCode=$statusCode, statusMsg=${statusMsg}, exception=$exception)"
