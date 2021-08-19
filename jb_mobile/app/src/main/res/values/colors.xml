@@ -8,7 +8,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="navbar_color">#FF973D</color>
+    <color name="d_orange_n_yellow">#FF973D</color>
+
     <color name="navbar_textcolor">#fff</color>
     <color name="d_white_n_black">#fff</color>
     <color name="d_blue_n_white">#083863</color>
+    <color name="d_black_n_white">#000</color>
+    <color name="d_grey_n_grey">#F4F4F4</color>
+
 </resources>

@@ -10,7 +10,6 @@ import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.snackbar.Snackbar.LENGTH_SHORT
 
 
@@ -24,15 +23,21 @@ fun AppCompatActivity.finishDelayed(millis: Long) {
     }.start()
 }
 
+fun AppCompatActivity?.showSnackBarFromActivity(
+    rootV: View,
+    msg: String = "",
+    @StringRes msgRes: Int = -1,
+    length: Int = LENGTH_SHORT
+) {
+    this?:return
+    rootV.showSnackBar(msg, msgRes, length)
 
-fun AppCompatActivity.showSnackBar(rootV: View, @StringRes msgRes: Int, length: Int = LENGTH_SHORT) {
-    Snackbar.make(rootV, msgRes, length).show()
 }
 
 
-fun AppCompatActivity.showSnackBar(rootV: View, msg: String, length: Int = LENGTH_SHORT) {
-    Snackbar.make(rootV, msg, length).show()
-}
+
+
+
 
 fun AppCompatActivity.hideKeyBoard() {
     val imm = this.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -80,18 +85,6 @@ fun AppCompatActivity.setStatusBarIconColorAsWhite(setAsWhite: Boolean ) {
 }
 
 
-
-fun AppCompatActivity?.showSnackBar(
-    rootV: View,
-    msg: String = "",
-    @StringRes msgRes: Int = -1,
-    length: Int = LENGTH_SHORT
-) {
-    this?:return
-    val finalMsg = if (msgRes == -1) msg else getString(msgRes)
-    Snackbar.make(rootV, finalMsg, length).show()
-}
-
 fun AppCompatActivity?.showKeyboard() {
     this?:return
     val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -138,7 +131,12 @@ fun AppCompatActivity.makeUIGoImmersive() {
     }
 }
 
-fun AppCompatActivity.findNavControllerSafe(fragmentId:Int):NavController{
+fun AppCompatActivity.findNavControllerByID(fragmentId:Int):NavController{
     val navHost = supportFragmentManager.findFragmentById(fragmentId) as NavHostFragment
+    return navHost.navController
+}
+
+fun AppCompatActivity.findNavControllerByTAG(tag:String):NavController{
+    val navHost = supportFragmentManager.findFragmentByTag(tag) as NavHostFragment
     return navHost.navController
 }

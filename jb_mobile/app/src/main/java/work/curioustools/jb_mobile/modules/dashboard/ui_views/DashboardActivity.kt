@@ -1,16 +1,14 @@
-package work.curioustools.jb_mobile.modules.dashboard.ui
+package work.curioustools.jb_mobile.modules.dashboard.ui_views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.PopupMenu
 import work.curioustools.jb_mobile.R
+import work.curioustools.jb_mobile.commons.BaseHiltActivity
 import work.curioustools.jb_mobile.databinding.ActivityDashboardBinding
-import work.curioustools.jb_mobile.utils.VBHolder
-import work.curioustools.jb_mobile.utils.VBHolderImpl
-import work.curioustools.jb_mobile.utils.findNavControllerSafe
-import work.curioustools.jb_mobile.utils.setNavigationBarColor
+import work.curioustools.jb_mobile.utils.*
 
-class DashboardActivity : AppCompatActivity(),
+class DashboardActivity : BaseHiltActivity(),
     VBHolder<ActivityDashboardBinding> by VBHolderImpl() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +19,8 @@ class DashboardActivity : AppCompatActivity(),
             PopupMenu(root.context, null).let {
                 it.inflate(R.menu.menu_dashboard)
                 val menu = it.menu
-                val controller = findNavControllerSafe(R.id.dashboardNavHost)
+                val hostTag = (getString(R.string.host_fragment_tag))
+                val controller = findNavControllerByTAG(hostTag)
 
                 if (menu != null) {
                     navBar.setupWithNavController(menu,controller)
@@ -31,6 +30,5 @@ class DashboardActivity : AppCompatActivity(),
         }
     }
 }
-
 
 

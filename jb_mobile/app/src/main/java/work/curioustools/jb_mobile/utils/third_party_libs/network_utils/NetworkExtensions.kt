@@ -1,0 +1,168 @@
+package work.curioustools.jb_mobile.utils.third_party_libs.network_utils
+
+import retrofit2.Call
+import retrofit2.Response
+import java.util.*
+import kotlin.collections.HashMap
+
+fun <T> Class<T>.getApi(baseUrl: String, headers: HashMap<String, String>? = null): T {
+    val retrofit = NetworkUtils.createRetrofitInstance(
+        baseUrl = baseUrl,
+        useMoshiConvertor = true,
+        useScalerConverotr = true,
+        headers = headers
+    )
+    return retrofit.create(this)
+}
+
+fun <T> Call<T>.executeAndUnify(): BaseResponse<T> {
+    /**
+     * Retrofit provides a response of format Response(isSuccessful:True/False, body:T/null,...)
+     * it treats all failures as null . this Response object on its own is enough to know about the
+     * json response, but for convenience we can use a unified sealed class for handling high level
+     * distinctions,such as success, failure, token expire failure etc.
+     * */
+    return try {
+        val response: Response<T?> = execute()
+        when {
+            response.isSuccessful -> {
+                when (val body = response.body()) {
+                    null -> BaseResponse.Failure(
+                        body,
+                        AppResponseStatus.APP_NULL_RESPONSE_BODY.code
+                    )
+                    else -> {
+                        // there can be other scenarios also, like
+                        //if(body is BaseDto && body.success == false){
+                        //  BaseResponse.Failure(null,AppResponseStatus.UNRECOGNISED.code)
+                        //}
+
+                        BaseResponse.Success(body)
+                    }
+                }
+            }
+            else -> {
+                val code = response.code()
+                val msg =
+                    AppResponseStatus.getStatusMsgOrDefault(code)
+                // todo get server msg via error body and not from enum
+                val body = response.body()
+                if (body is BaseDto && body.error.isNullOrBlank()) {
+                    // if body is of type BaseDto(which it should be), it will set
+                    // error msg if not already set
+                    body.error = msg
+                }
+                val finalResponse = BaseResponse.Failure(body, code)
+                finalResponse.statusMsg = msg
+                finalResponse.exception = Exception(msg)
+                finalResponse
+            }
+        }
+    } catch (t: Throwable) {
+        BaseResponse.Failure(null, AppResponseStatus.UNRECOGNISED.code)
+    }
+
+}
+
+
+fun <DTO, RESP> BaseResponse<DTO>.convert(convertor: (DTO?) -> RESP?): BaseResponse<RESP?> {
+    return when (this) {
+        is BaseResponse.Failure -> BaseResponse.Failure(
+            convertor.invoke(this.body),
+            this.statusCode
+        )
+        is BaseResponse.Success -> BaseResponse.Success(convertor.invoke(this.body))
+    }
+
+}
+
+
+inline fun <T> BaseResponse<T>.logResponse(onSuccess: (T) -> Unit = {}) {
+    val time = Calendar.getInstance().time
+    println("=====<test started at $time> ========")
+    val resp = this
+    println("response code =" + resp.statusCode)
+    println("response msg= " + resp.statusMsg)
+
+    when (resp) {
+        is BaseResponse.Failure -> {
+            println("response = ${resp.body}")
+            println("exception = ${resp.exception}")
+        }
+        is BaseResponse.Success -> {
+            (resp.body as? BaseDto)?.let {
+                println("current response extends BaseDto.class")
+                println("error:" + it.error)
+                println("limit:" + it.limit)
+                println("currentPage:" + it.currentPage)
+                println("totalPages:" + it.totalPages)
+                println("offset:" + it.offset)
+                println("perPageEntries:" + it.perPageEntries)
+                println("totalEntries:" + it.totalEntries)
+            }
+            onSuccess.invoke(resp.body)
+        }
+    }
+
+    println("=====</end for test started at $time> ========")
+
+}
+
+fun <T> Response<T>?.logRetrofitResponse() {
+    this?.let {
+        println("body = ${it.body()})")
+        println("it.code = ${it.code()} ")
+        println("it.isSuccessful = ${it.isSuccessful} ")
+        println("msg = ${it.message()}")
+        println("headers:")
+        it.headers().toMultimap().forEach { (key, value) -> println("\t $key : $value") }
+        println("it.errorBody = ${it.errorBody()} ")
+        println("it.raw request = ${it.raw().request} ")
+        println("it.raw request body= ${it.raw().request.body} ")
+        println("it.raw request headers= ${it.raw().request.headers} ")
+        println("it.raw response= ${it.raw()} ")
+
+        println("it.raw response body= ${it.raw().body} ")
+        println("it.raw response body msg= ${it.raw().message} ")
+
+        println("===========================================")
+    }
+}
+/*
+misc
+     inline fun <reified T> Retrofit.createApi(): T = this.create(T::class.java)
+    fun Retrofit.updateBaseUrl(baseUrl: String): Retrofit = this.newBuilder().baseUrl(baseUrl).build()
+
+        @Suppress("DeprecatedCallableAddReplaceWith")
+        @Deprecated("instead use the createRetrofitInstance")
+        fun getSimpleRetrofitInstance(baseUrl: String): Retrofit {
+            //i use it in personal projects, via gson
+            return Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .client(createHttpClient())
+                .addConverterFactory(createGsonConvertor())
+                .build()
+        }
+
+        @Suppress("DeprecatedCallableAddReplaceWith")
+        @Deprecated("instead use the createRetrofitInstance")
+        fun getStandardRetrofitInstance(baseUrl: String): Retrofit {
+            //used in standard professional projects via moshi
+            return Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .addConverterFactory(createMoshiConvertor())
+                .client(createHttpClient())
+                .build()
+        }
+
+
+        @Suppress("DeprecatedCallableAddReplaceWith")
+        @Deprecated("instead use the extension")
+        fun <T> getApiObject(
+            apiDao: Class<T>, baseUrl: String, usingMoshi: Boolean = true
+        ): T {
+            val retrofit = createRetrofitInstance(baseUrl,  usingMoshi,  true)
+            return retrofit.create(apiDao)
+        }
+*/

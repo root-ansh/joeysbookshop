@@ -19,10 +19,6 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Qualifier
 import javax.inject.Singleton
 
-/*
-* requires hilt setup
-*
-* */
 
 @Module @InstallIn(SingletonComponent::class)
 class NetworkDI {
@@ -62,7 +58,7 @@ class NetworkDI {
     }
 
     @Singleton @Provides
-    fun getBaseUrl() = "https://www.google.com"
+    fun getTemporaryBaseUrl() = "https://www.google.com"
 
     @Singleton @Provides
     fun getRetrofitClient(
@@ -80,12 +76,12 @@ class NetworkDI {
 
 
     @Singleton @Provides @NetworkWithHeaders
-    fun getHeaderInterceptorWithDummyHeader() =
+    fun getHeaderInterceptorWithHeaders() =
         HeaderInterceptor(hashMapOf(HeaderInterceptor.HEADER_DUMMY_API_AUTH_PAIR))
 
 
     @Singleton @Provides @NetworkWithHeaders
-    fun getOkHttpClientWithDummyHeaders(
+    fun getOkHttpClientWithHeaders(
         loggingInterceptor: HttpLoggingInterceptor,
         headerInterceptor: HeaderInterceptor
     ) = OkHttpClient.Builder().run {
@@ -99,7 +95,7 @@ class NetworkDI {
     }
 
     @Singleton @Provides @NetworkWithHeaders
-    fun getRetrofitClientWithDummyHeaders(
+    fun getRetrofitClientWithHeaders(
         baseUrl: String,
         okHttpClientWithDummyHeaders: OkHttpClient,
         scalarConvertor: ScalarsConverterFactory,
@@ -112,13 +108,11 @@ class NetworkDI {
         build()
     }
 
+    @Qualifier @Retention(AnnotationRetention.BINARY) @Keep
+    annotation class NetworkWithHeaders
+
 }
 
-@Qualifier @Retention(AnnotationRetention.BINARY) @Keep
-annotation class NetworkWithHeaders
-
-@Qualifier @Retention(AnnotationRetention.BINARY) @Keep
-annotation class NetworkWithoutHeaders
 
 
 

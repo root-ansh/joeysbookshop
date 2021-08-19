@@ -3,12 +3,14 @@ package work.curioustools.jb_mobile.utils
 import android.app.Activity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
 
 
-fun View.showKeyboard() = (context as? AppCompatActivity).showKeyboard()//todo verify
-fun View.hideKeyboard() = (context as? AppCompatActivity).hideKeyboard()//todo verify
+fun View.showKeyboardFromView() = (context as? AppCompatActivity).showKeyboard()//todo verify
+fun View.hideKeyboardFromView() = (context as? AppCompatActivity).hideKeyboard()//todo verify
 fun View?.showKeyboardForced(act: AppCompatActivity?) {
     this ?: return
     val view = this
@@ -22,5 +24,11 @@ fun View?.showKeyboardForced(act: AppCompatActivity?) {
 
 fun View.showToastFromView(str:String) =   context?.showToast(str)
 
-
-
+fun View.showSnackBar(
+    msg: String = "",
+    @StringRes msgRes: Int = -1,
+    length: Int = Snackbar.LENGTH_SHORT
+){
+    val finalMsg = if (msgRes == -1) msg else context.getString(msgRes)
+    Snackbar.make(this, finalMsg, length).show()
+}

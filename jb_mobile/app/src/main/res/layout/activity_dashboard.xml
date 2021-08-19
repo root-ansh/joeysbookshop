@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".modules.dashboard.ui.DashboardActivity">
+    tools:context=".modules.dashboard.ui_views.DashboardActivity">
 
-    <androidx.fragment.app.FragmentContainerView
+    <fragment
         android:id="@+id/dashboardNavHost"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:tag="@string/host_fragment_tag"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@id/navbarBg"
         app:layout_constraintTop_toTopOf="parent"

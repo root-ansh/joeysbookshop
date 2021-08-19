@@ -11,7 +11,7 @@
         android:name=".JoeBookShopApp"
         android:theme="@style/Theme.Jb_mobile">
         <activity
-            android:name=".modules.dashboard.ui.DashboardActivity"
+            android:name=".modules.dashboard.ui_views.DashboardActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

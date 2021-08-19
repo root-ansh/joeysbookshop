@@ -14,12 +14,11 @@ abstract class BaseConcurrencyUseCase<REQUEST,RESP>{
 
    abstract suspend fun  getRepoCall(param: REQUEST) : RESP
 
-
-    fun request(param:REQUEST){
+    fun requestForData(param:REQUEST){
         scope.apply {
             launch(Dispatchers.IO +job){
-                val result =  getRepoCall(param)
-                liveData.postValue(result)
+                val result: RESP? =  getRepoCall(param)
+                result?.let { liveData.postValue(it) }
             }
         }
     }

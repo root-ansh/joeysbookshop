@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/dashBoardFragment"
-        android:name="work.curioustools.jb_mobile.modules.dashboard.ui.DashBoardFragment"
+        android:name="work.curioustools.jb_mobile.modules.dashboard.ui_views.DashBoardFragment"
         tools:layout="@layout/fragment_dashboard"
         android:label="DashBoardFragment" />
     <fragment

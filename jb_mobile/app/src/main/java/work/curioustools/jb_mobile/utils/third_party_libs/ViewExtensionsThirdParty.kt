@@ -6,11 +6,12 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 
 
-/**
-Requires:
+@RequiresDependency(
+"""
 implementation("com.github.bumptech.glide:glide:4.11.0")
 annotationProcessor("com.github.bumptech.glide:compiler:4.11.0")
-*/
+"""
+)
 fun AppCompatImageView.loadImageFromInternet(
     url: String,
     @DrawableRes placeholder: Int,
