@@ -29,7 +29,7 @@ interface DashboardApi {
     fun deleteBook(@Body id: DeleteBookRequest): Call<BaseDto>
 
     companion object {
-        const val BASE_URL = "http://192.168.0.30:3000/"
+        const val BASE_URL = "http://192.168.0.30:3001/"
 
         private const val API = "api"
         private const val BOOKLIST = "$API/booklist"

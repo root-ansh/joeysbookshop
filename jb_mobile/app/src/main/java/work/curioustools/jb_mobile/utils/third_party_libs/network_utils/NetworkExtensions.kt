@@ -24,6 +24,7 @@ fun <T> Call<T>.executeAndUnify(): BaseResponse<T> {
      * distinctions,such as success, failure, token expire failure etc.
      * */
     return try {
+        logCurrentCall(" execute and unify called")
         val response: Response<T?> = execute()
         response.logRetrofitResponse()
         when {
@@ -79,7 +80,7 @@ fun <DTO, RESP> BaseResponse<DTO>.convert(convertor: (DTO?) -> RESP?): BaseRespo
 }
 
 
-inline fun <T> BaseResponse<T>.logResponse(onSuccess: (T) -> Unit = {}) {
+inline fun <T> BaseResponse<T>.printResponse(onSuccess: (T) -> Unit = {}) {
     val time = Calendar.getInstance().time
     println("=====<test started at $time> ========")
     val resp = this
@@ -131,6 +132,26 @@ fun <T> Response<T>?.logRetrofitResponse() {
         Log.e(TAG, "===========================================")
     }
 }
+
+fun <T> Call<T>.logCurrentCall(msg:String =""){
+    val TAG = "RETROFIT>>"
+    Log.e(TAG, "logCurrentCall() called with: msg = $msg")
+    this.let {
+        it.request()?.let {
+            Log.e(TAG, "logCurrentCall: body :  ${it.body}")
+            Log.e(TAG, "logCurrentCall: cacheControl ${it.cacheControl}")
+            it.headers.toMultimap().forEach { (key, value) -> Log.e(TAG, "\t $key : $value") }
+            Log.e(TAG, "logCurrentCall: ishttps ${it.isHttps}")
+            Log.e(TAG, "logCurrentCall: method ${it.method}")
+            Log.e(TAG, "logCurrentCall: url ${it.url}")
+
+
+
+        }
+    }
+}
+
+
 /*
 misc
      inline fun <reified T> Retrofit.createApi(): T = this.create(T::class.java)
