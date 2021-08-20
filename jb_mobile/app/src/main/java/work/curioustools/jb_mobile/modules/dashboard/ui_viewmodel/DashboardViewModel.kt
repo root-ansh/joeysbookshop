@@ -6,14 +6,22 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import work.curioustools.jb_mobile.modules.dashboard.domain_usecases.BookListUseCase
+import work.curioustools.jb_mobile.modules.dashboard.domain_usecases.DeleteBookUseCase
+import work.curioustools.jb_mobile.modules.dashboard.domain_usecases.SearchBooksUseCase
+import work.curioustools.jb_mobile.modules.dashboard.domain_usecases.UpdateBookUseCase
 import work.curioustools.jb_mobile.modules.dashboard.ui_models.BookModel
 import work.curioustools.jb_mobile.utils.third_party_libs.network_utils.BaseResponse
 import javax.inject.Inject
 
 @HiltViewModel
 class DashboardViewModel @Inject constructor(
-    private val bookListUseCase: BookListUseCase
-):ViewModel() {
+    private val bookListUseCase: BookListUseCase,
+    private val searchBooksUseCase: SearchBooksUseCase,
+/*
+private val updateBookUseCase: UpdateBookUseCase,
+private val deleteBookUseCase: DeleteBookUseCase,
+*/
+    ):ViewModel() {
 
     fun getBooksList(){
         bookListUseCase.requestForData(Unit)

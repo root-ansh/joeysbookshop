@@ -11,7 +11,8 @@ open class BaseDto(
     @field:Json(name = "per_page") open val perPageEntries: Int? = null,
     @field:Json(name = "total") open val totalEntries: Int? = null, //totalEntries
     @field:Json(name = "limit") val limit: Int? = null,
-    @field:Json(name = "offset") val offset: Int? = null
+    @field:Json(name = "offset") val offset: Int? = null,
+    @field:Json(name = "success") val success:Boolean? = null
 
 ) {
     /**
