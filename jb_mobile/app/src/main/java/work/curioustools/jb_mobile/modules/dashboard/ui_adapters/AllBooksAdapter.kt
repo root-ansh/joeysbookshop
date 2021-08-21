@@ -49,18 +49,22 @@ class AllBooksAdapter(
 
     companion object {
         private const val GRID_MAX_COLS_PER_ROW = 2
-        fun getLayoutManager(ctx: Context, items: List<BookModel>) {
+        fun getLayoutManager(ctx: Context, adp:AllBooksAdapter) :GridLayoutManager{
             val layoutManager = GridLayoutManager(ctx, GRID_MAX_COLS_PER_ROW)
             layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                 override fun getSpanSize(position: Int): Int {
-                    return when (items[position].uiType) {
-                        BookModel.BookUiType.GRID -> GRID_MAX_COLS_PER_ROW
-                        BookModel.BookUiType.HORIZONTAL -> GRID_MAX_COLS_PER_ROW / GRID_MAX_COLS_PER_ROW
-                        BookModel.BookUiType.HIGHLIGHT -> GRID_MAX_COLS_PER_ROW
+
+                    return when (adp.getItemViewType(position)) {
+                        BookModel.BookUiType.HORIZONTAL.id -> GRID_MAX_COLS_PER_ROW
+                        BookModel.BookUiType.GRID.id -> GRID_MAX_COLS_PER_ROW/GRID_MAX_COLS_PER_ROW
+                        else -> GRID_MAX_COLS_PER_ROW
+
+
                     }
                 }
 
             }
+            return layoutManager
         }
 
     }

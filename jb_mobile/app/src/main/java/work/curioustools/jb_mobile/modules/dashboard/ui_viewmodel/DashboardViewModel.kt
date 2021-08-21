@@ -47,7 +47,7 @@ private val deleteBookUseCase: DeleteBookUseCase,
                                 year = dto.year ?: 1900,
                                 id = dto.id ?: "",
                                 tags = (dto.tags ?: listOf()).map { BookModel.BooksTagModel(it) },
-                                uiType = if ((index + 1) % 3 == 0) BookModel.BookUiType.GRID else BookModel.BookUiType.HORIZONTAL
+                                uiType = if ((index + 1) % 7 == 0) BookModel.BookUiType.HORIZONTAL else BookModel.BookUiType.GRID
                             )
                         }
                     )

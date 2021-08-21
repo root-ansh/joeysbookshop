@@ -15,5 +15,6 @@
     <color name="d_blue_n_white">#083863</color>
     <color name="d_black_n_white">#000</color>
     <color name="d_grey_n_grey">#F4F4F4</color>
+    <color name="dark_blue">#3F51B5</color>
 
 </resources>

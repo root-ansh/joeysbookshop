@@ -1,6 +1,7 @@
 package work.curioustools.jb_mobile.utils
 
 import android.app.Activity
+import android.graphics.Color
 import android.os.Build
 import android.view.View
 import android.view.WindowManager
@@ -72,18 +73,27 @@ fun AppCompatActivity.setStatusBarColor(@ColorRes res:Int){//todo verify
     }
 }
 
-fun AppCompatActivity.setNavigationBarColor(@ColorRes barColor: Int ) {//todo verify
+fun AppCompatActivity.setNavigationBarColor(@ColorRes barColor: Int , setContrastingNavIcons:Boolean = true) {//todo verify
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) return
     window.apply {
         clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
         addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        navigationBarColor = getColorCompat(barColor)
+        val barColorCode = getColorCompat(barColor)
+        navigationBarColor = barColorCode
+       if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.O){
+           var flags = decorView.systemUiVisibility
+           flags =
+               if (isColorLight(barColorCode))
+                   (flags or View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR)
+               else
+                   (flags and View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR.inv())
+           decorView.systemUiVisibility = flags
+       }
     }
 }
 fun AppCompatActivity.setStatusBarIconColorAsWhite(setAsWhite: Boolean ) {
     window.decorView.rootView.systemUiVisibility = if (setAsWhite) 0 else 8192
 }
-
 
 fun AppCompatActivity?.showKeyboard() {
     this?:return

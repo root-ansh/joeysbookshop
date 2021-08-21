@@ -38,7 +38,7 @@ class DashBoardFragment : BaseHiltFragment(), VBHolder<FragmentDashboardBinding>
         //init ui
         binding?.rvDashBoard?.apply {
             val ctx = this.context
-            layoutManager = LinearLayoutManager(ctx)
+            layoutManager = AllBooksAdapter.getLayoutManager(ctx,dashboardAdp)
             adapter = dashboardAdp
         }
         //set listeners

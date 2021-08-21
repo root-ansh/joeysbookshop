@@ -4,17 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="8dp"
-    android:layout_marginTop="4dp"
-    android:background="@drawable/bg_rect_greys"
-    android:padding="4dp"
+    android:padding="12dp"
     >
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:srcCompat="@drawable/bg_rect_greys"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivIcon"
-        android:layout_width="125dp"
+        android:layout_width="100dp"
         android:layout_height="150dp"
+        android:scaleType="fitStart"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/bg_rect_gradient_grey" />
@@ -40,7 +47,9 @@
             android:maxLines="2"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:padding="4dp"
+            android:paddingHorizontal="4dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="4dp"
             android:textColor="@color/d_black_n_white"
             tools:text="@string/lorem" />
 
