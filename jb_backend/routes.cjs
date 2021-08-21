@@ -38,7 +38,7 @@ const port = process.env.PORT || 3000
 const development  = "localhost"
 const production = '0.0.0.0'
 const host = (process.env.NODE_ENV ? production : development);
-
+console.log(`app is willbe requesting to run at   hostname ${host} :  port ${port}!`)
 app.listen(port, host, () => console.log(`app is running on hostname ${host} :  port ${port}!`))
 
 //===============================================================================================
