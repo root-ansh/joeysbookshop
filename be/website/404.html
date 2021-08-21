@@ -1,0 +1,99 @@
+<!doctype html>
+<html class="has-navbar-fixed-top has-background-white-bis" lang="en">
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport'
+          content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0'>
+    <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+
+
+    <title>My CMS!</title>
+
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bulma@0.8.1/css/bulma.min.css'>
+    <style>
+        body{ font-family: Arial, Helvetica, sans-serif;}
+    </style>
+</head>
+
+<body>
+
+<nav class='navbar is-fixed-top is-black' role='navigation' aria-label='main navigation'>
+
+    <section class='navbar-brand'>
+        <!-- Homepage-->
+        <span class='navbar-item  has-background-warning'>
+            <a class='title  has-text-black has-text-weight-bold' href='/'> Curioustools</a>
+        </span>
+
+    
+
+    </section>
+
+    <section class='navbar-menu '>
+
+    
+
+        <div class='navbar-end'>
+            <a href='/' class='navbar-item'>
+                <img src='https://root-ansh.github.io/notes/a_index_images/logo.svg' height='64' width='64'>
+            </a>
+        </div>
+    </section>
+</nav>
+
+
+<script src='https://code.jquery.com/jquery-3.4.1.min.js'
+        integrity='sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo='
+        crossorigin='anonymous'></script>
+
+<script>
+    $(document).ready(function () {
+
+        // Check for click events on the navbar burger icon
+        $('.navbar-burger').click(function () {
+
+            // Toggle the 'is-active' class on both the 'navbar-burger' and the 'navbar-menu'
+            $('.navbar-burger').toggleClass('is-active');
+            $('.navbar-menu').toggleClass('is-active');
+        });
+    });
+
+</script>
+
+
+
+
+
+<section class="section container">
+
+    <div class="columns is-centered">
+
+        <div class="column  ">
+            <article class="box is-shadowless has-background-white-ter">
+
+                <h1 class="has-text-centered title has-text-grey-light" style="font-size: 6vw">OOPS ^_^! </h1>
+                <h4 class="subtitle is-4 has-text-centered has-text-grey-light"> You seem to be asking for something that we don't have.</h4>
+                <h4 class="subtitle is-4 has-text-centered has-text-grey-light"> Well, Keep looking. Good Luck!</h4>
+
+                <blockquote class="subtitle  has-text-centered has-text-grey">
+                    “The World is my home & India is my living room. I'm independent in my living room to explore,
+                    hoping someday I will also be able to explore my own home.”
+
+                </blockquote>
+                <p class="subtitle has-text-centered has-text-grey has-text-right">
+                    ― Bikram Mahata
+                </p>
+
+
+            </article>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+</body>
+</html>

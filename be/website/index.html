@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Joey's </title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <style>
+            body {
+                font-family: 'Gloria Hallelujah', cursive;
+                background-image: url("/joey.png");
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+                color: #000000;
+                padding-bottom: 75px;
+            }
+
+            @media (min-width: 768px) {
+                body {
+                    padding-bottom: 110px;
+                }
+            }
+
+            .navbar {
+                padding: 0 0;
+            }
+
+            .navbar-brand {
+                margin-right: 0;
+            }
+
+            .navbar-brand img {
+                height: 128px;
+            }
+
+            .navbar-dark {
+                padding-top: 35px;
+                padding-bottom: 35px;
+            }
+
+            .navbar-dark .navbar-text {
+                color: #000000;
+                opacity: 1;
+                padding: 0 20px;
+                border-right: 1px solid #000000;
+                font-size: 18px;
+                font-weight: bold;
+                text-align: center;
+            }
+
+            .navbar-dark .navbar-text:last-child {
+                border-right: 0;
+            }
+
+            @media (max-width: 767px) {
+                .navbar-dark {
+                    padding-bottom: 0;
+                }
+            }
+
+            .page-title {
+                font-family: 'Gloria Hallelujah', cursive;
+                font-size: 80px;
+                font-weight: bold;
+                margin-bottom: 6px;
+            }
+
+            @media (max-width: 767px) {
+                .page-title {
+                    font-size: 35px;
+                    margin-bottom: 14px;
+                }
+            }
+
+            .page-description {
+                max-width: 465px;
+                font-size: 18px;
+                margin-bottom: 39px;
+            }
+
+            @media (max-width: 767px) {
+                .page-description {
+                    font-size: 14px;
+                }
+            }
+
+            p {
+                font-size: 14px;
+                margin-bottom: 21px;
+            }
+
+            .footer-social-links .social-link {
+                display: inline-block;
+                text-align: center;
+                line-height: 50px;
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+                border-radius: 50%;
+                background-color: #f8f8f8;
+                color: #000000;
+                margin-right: 16px;
+                transition: all 0.3s ease-in-out;
+            }
+
+            .footer-social-links .social-link:last-child {
+                margin-right: 0;
+            }
+
+            .footer-social-links .social-link:hover {
+                text-decoration: none;
+                background-color: #000000;
+                color: #ffffff;
+            }
+
+
+        </style>
+    </head>
+
+
+    <body class="min-vh-100 d-flex flex-column">
+        <header>
+            <div class="container">
+                <nav class="navbar navbar-dark bg-transparenet">
+                    <a class="navbar-brand" href="/">
+                        <img src="/logo3.svg" alt="logo">
+                    </a>
+                    <span class="navbar-text ml-auto d-none d-sm-inline-block">
+                       <a target="_blank" href="https://curioustools.herokuapp.com/"  class="navbar-text  text-body">link shortner </a>
+                    <a target="_blank" href="https://ctools-blog.herokuapp.com/" class="navbar-text text-body">Blogs Template </a>
+                    </span>
+
+                    <a target="_blank"  href="https://root-ansh.github.io/notes" class="navbar-text d-none d-sm-inline-block">Visit Curious Tools</a>
+                </nav>
+            </div>
+        </header>
+        <main class="my-auto">
+            <div class="container">
+                <h1 class="page-title">Joey's Book Shop!</h1>
+                <p></p>
+                <p class="page-description" style="font-family: 'Karla', sans-serif">
+                    Joey Tribbiani has a crush on a cute Librarian and to impress her, opened a book store.
+                    To get his book titles organised and available for public viewing, he wanted a cloud backend and a
+                    set of API's.<br><br>
+                    Checkout what he has to offer by looking at the <a href="/api"> API Section. </a>
+                </p>
+                <p class="page-description mb-3" >A Product from the house of curioustools.</p>
+                <nav class="footer-social-links">
+                    <a target="_blank"  href="https://www.github.com/curioustools" class="social-link"><i class="mdi mdi-github-face"></i></a>
+                    <a target="_blank" href="https://www.twitter.com/root_ansh" class="social-link"><i class="mdi mdi-twitter"></i></a>
+                    <a target="_blank" href="mailto:anshsachdeva.work@gmail.com" class="social-link"><i class="mdi mdi-google"></i></a>
+                    <a target="_blank" href="https://root-ansh.github.io/notes" class="social-link"><i class="mdi mdi-web"></i></a>
+                </nav>
+            </div>
+        </main>
+    </body>
+
+</html>
