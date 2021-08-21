@@ -33,9 +33,13 @@ const fsLib = require("fs")
 const pathsLib = require("path")
 const express = require('express')
 const app = express()
-const port = 3001
-const host = "192.168.0.30"
-app.listen(port, host, () => console.log(`Example app listening on hostname ${host} :  port ${port}!`))
+const port = process.env.PORT || 3000
+
+const development  = "localhost"
+const production = '0.0.0.0'
+const host = (process.env.NODE_ENV ? production : development);
+
+app.listen(port, host, () => console.log(`app is running on hostname ${host} :  port ${port}!`))
 
 //===============================================================================================
 //pre-interceptors
