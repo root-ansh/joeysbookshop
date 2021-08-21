@@ -20,8 +20,5 @@ class SearchFragment : Fragment(), VBHolder<FragmentSearchBinding> by VBHolderIm
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        getBindingOrError().tvText.setOnClickListener {
-            it.showToastFromView("SearchFragment!")
-        }
     }
 }

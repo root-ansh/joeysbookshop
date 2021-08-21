@@ -19,9 +19,5 @@ class ProfileFragment : Fragment(), VBHolder<FragmentProfileBinding> by VBHolder
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        getBindingOrError().tvText.setOnClickListener {
-            it.showToastFromView("ProfileFragment!")
-        }
     }
 }

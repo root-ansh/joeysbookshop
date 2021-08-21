@@ -26,8 +26,8 @@ class BookHighlightVH(
             ivIcon.loadImageFromInternet(
                 "$staticIconUrlWithSlash${model.imageQueryUrl}",
                 R.drawable.bg_rect_gradient_grey,
-                R.drawable.turkey,
-                R.drawable.turkey
+                R.drawable.turkey_d_white_n_black,
+                R.drawable.turkey_d_white_n_black
             )
 
             rvTags.apply {

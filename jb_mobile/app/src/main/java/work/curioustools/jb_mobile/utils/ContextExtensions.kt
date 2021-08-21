@@ -1,6 +1,7 @@
 package work.curioustools.jb_mobile.utils
 
 import android.content.Context
+import android.content.res.Configuration
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.annotation.ColorRes
@@ -15,6 +16,9 @@ fun Context.getDrawableCompat(@DrawableRes res: Int) = ContextCompat.getDrawable
 fun Context.showToast(str: String, length: Int = LENGTH_SHORT) =
     Toast.makeText(this, str, length).show()
 
-
+fun Context.isDarkThemeOn(): Boolean {
+    return resources.configuration.uiMode and
+            Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+}
 
 

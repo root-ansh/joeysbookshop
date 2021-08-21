@@ -8,4 +8,15 @@
     <string name="lorem_3_words">Lorem ipsum dolor</string>
     <string name="highlight_of_the_day">highlight of the day</string>
     <string name="host_fragment_tag">host_fragment</string>
+    <string name="available_filters">Available Filters:</string>
+    <string name="search_by_author">Search By Author...</string>
+    <string name="search_by_title">Search by Title...</string>
+    <string name="search_by_language">Search by Language...</string>
+    <string name="search_by_country">search by country</string>
+    <string name="search_by_min_pages">Search by Min Pages</string>
+    <string name="search_for_bookss">Search for books</string>
+    <string name="delete_this_book">delete this book</string>
+    <string name="edit_info">edit info</string>
+    <string name="update_book_details">update book details</string>
+    <string name="title">title</string>
 </resources>

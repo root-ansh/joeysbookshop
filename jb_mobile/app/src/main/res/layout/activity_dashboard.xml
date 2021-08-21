@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/d_cream_n_black"
     tools:context=".modules.dashboard.ui_views.DashboardActivity">
 
     <fragment
@@ -30,14 +31,14 @@
         android:layout_height="70dp"
         android:elevation="12dp"
         android:padding="8dp"
-        app:iconTintActive="@color/d_white_n_black"
+        app:iconTintActive="@color/d_black_n_white"
         app:backgroundColor="@color/navbar_color"
-        app:iconTint="@color/d_white_n_black"
+        app:iconTint="@color/d_black_n_white"
         app:cornerRadius="16dp"
         app:iconSize="16dp"
         app:itemFontFamily="@font/friends_font"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/menu_dashboard"
-        app:textColor="@color/navbar_textcolor" />
+        app:textColor="@color/d_black_n_white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

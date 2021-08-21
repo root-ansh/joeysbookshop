@@ -12,7 +12,9 @@ class DashboardActivity : BaseHiltActivity(),
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ActivityDashboardBinding.inflate(layoutInflater).setContentView(this)
-        setNavigationBarColor(R.color.navbar_color)
+        setSystemBottomNavBarColor(R.color.navbar_color)
+        toggleActionBar(false)
+        setStatusBarIconColorAsWhite(isDarkThemeOn())
 
         withBinding {
             PopupMenu(root.context, null).let {

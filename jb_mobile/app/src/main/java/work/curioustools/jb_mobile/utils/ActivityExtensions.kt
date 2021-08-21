@@ -1,6 +1,9 @@
 package work.curioustools.jb_mobile.utils
 
 import android.app.Activity
+import android.content.Context
+import android.content.res.Configuration
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.graphics.Color
 import android.os.Build
 import android.view.View
@@ -35,32 +38,8 @@ fun AppCompatActivity?.showSnackBarFromActivity(
 
 }
 
-
-
-
-
-
-fun AppCompatActivity.hideKeyBoard() {
-    val imm = this.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-    val view = this.currentFocus ?: View(this)
-    imm.hideSoftInputFromWindow(view.windowToken, 0)
-}
-
 fun AppCompatActivity.showToastFromActivity(str:String) = showToast(str)
 
-
-fun AppCompatActivity.makeUiGoBeyondStatusBarAndBottomNavBar() {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-        window?.setDecorFitsSystemWindows(false)
-    } else {
-
-        window?.decorView?.systemUiVisibility =
-            View.SYSTEM_UI_FLAG_FULLSCREEN or
-                    (View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY) or
-                    (View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
-
-    }
-}
 
 
 fun AppCompatActivity.setStatusBarColor(@ColorRes res:Int){//todo verify
@@ -73,7 +52,7 @@ fun AppCompatActivity.setStatusBarColor(@ColorRes res:Int){//todo verify
     }
 }
 
-fun AppCompatActivity.setNavigationBarColor(@ColorRes barColor: Int , setContrastingNavIcons:Boolean = true) {//todo verify
+fun AppCompatActivity.setSystemBottomNavBarColor(@ColorRes barColor: Int, setContrastingNavIcons:Boolean = true) {//todo verify
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) return
     window.apply {
         clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
@@ -91,37 +70,39 @@ fun AppCompatActivity.setNavigationBarColor(@ColorRes barColor: Int , setContras
        }
     }
 }
-fun AppCompatActivity.setStatusBarIconColorAsWhite(setAsWhite: Boolean ) {
+fun AppCompatActivity.setStatusBarIconColorAsWhite(setAsWhite: Boolean = isDarkThemeOnFromActivity() ) {
     window.decorView.rootView.systemUiVisibility = if (setAsWhite) 0 else 8192
 }
 
-fun AppCompatActivity?.showKeyboard() {
-    this?:return
-    val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-    inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
-}//todo verify
+fun AppCompatActivity.isDarkThemeOnFromActivity()= isDarkThemeOn()
 
 
-fun AppCompatActivity?.hideKeyboard() {
-    this?:return
-    if (currentFocus != null) {
-        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+fun AppCompatActivity.toggleActionBar(show:Boolean){
+    supportActionBar?.let {
+        if (show) {
+            it.show()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) window?.setDecorFitsSystemWindows(false)
+            else{
+                window?.setFlags(
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN
+                )
+            }
+        } else {
+            it.hide()
+        }
     }
 
-}//todo verify
+}
 
-
-fun AppCompatActivity.makeUiGoFullScreen() {
-    // i.e make ui go Beyond Status Bar And Bottom NavBar
+fun AppCompatActivity.hideStatusBarActionBarAndBottomNav() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
         window?.setDecorFitsSystemWindows(false)
     } else {
-
         window?.decorView?.systemUiVisibility =
             View.SYSTEM_UI_FLAG_FULLSCREEN or
-                    View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
-                    View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    (View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY) or
+                    (View.SYSTEM_UI_FLAG_HIDE_NAVIGATION)
 
     }
 }
@@ -140,6 +121,31 @@ fun AppCompatActivity.makeUIGoImmersive() {
                     View.SYSTEM_UI_FLAG_FULLSCREEN
     }
 }
+
+
+
+fun AppCompatActivity?.showKeyboard() {
+    this?:return
+    val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+    inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
+}//todo verify
+
+
+fun AppCompatActivity?.hideKeyboard() {
+    this?:return
+    if (currentFocus != null) {
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(currentFocus?.windowToken, 0)
+    }
+
+}//todo verify
+
+fun AppCompatActivity.hideKeyBoard() {
+    val imm = this.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+    val view = this.currentFocus ?: View(this)
+    imm.hideSoftInputFromWindow(view.windowToken, 0)
+}
+
 
 fun AppCompatActivity.findNavControllerByID(fragmentId:Int):NavController{
     val navHost = supportFragmentManager.findFragmentById(fragmentId) as NavHostFragment

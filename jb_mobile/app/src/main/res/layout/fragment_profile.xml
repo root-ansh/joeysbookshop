@@ -2,15 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#000">
+    android:background="@color/d_cream_n_coal">
 
-    <Button
-        android:id="@+id/tvText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+    <include
+        android:id="@+id/comingSoon"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/layout_no_searches"
         />
 
 

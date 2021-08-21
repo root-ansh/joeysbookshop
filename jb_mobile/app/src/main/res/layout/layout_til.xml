@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_rect_hollow_dcream"
+        android:hint="@string/title"
+        android:padding="8dp"
+        app:boxBackgroundMode="none"
+        app:expandedHintEnabled="true"
+        app:hintEnabled="true"
+        app:hintTextAppearance="@style/hintStyle">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:enabled="false"
+            android:padding="8dp"
+            android:textColor="@color/d_black_n_white"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+</FrameLayout>

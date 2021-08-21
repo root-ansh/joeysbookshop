@@ -78,7 +78,8 @@
             android:minHeight="0dp"
             android:minWidth="0dp"
             android:padding="4dp"
-            android:textColor="@color/d_orange_n_yellow"
+            android:textStyle="bold"
+            android:textColor="@color/d_blue_n_white"
             android:textSize="12sp"
            />
 
