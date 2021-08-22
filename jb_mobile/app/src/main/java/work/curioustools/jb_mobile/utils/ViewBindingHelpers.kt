@@ -41,7 +41,7 @@ interface VBHolder<B : ViewBinding> {
         return this.root
     }
 
-    fun B.setContentView(activity:AppCompatActivity){
+    fun B.setContentViewFor(activity:AppCompatActivity){
         registerForBinding(activity)
         activity.setContentView(this.root)
     }

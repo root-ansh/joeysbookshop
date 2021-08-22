@@ -25,6 +25,7 @@
         android:text="Coming Soon"
         android:textSize="22sp"
         android:gravity="center"
+        android:fontFamily="@font/friends_font"
         android:textColor="@color/d_lgrey_n_dgrey"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:paddingBottom="12dp"
+    android:clickable="true"
+    android:focusable="true"
     android:layout_height="wrap_content">
 
 
@@ -37,6 +39,7 @@
         android:ellipsize="end"
         android:gravity="center"
         android:maxLines="2"
+        android:fontFamily="@font/friends_font"
         android:padding="12dp"
         android:textColor="@color/d_black_n_white"
         android:textSize="16sp"

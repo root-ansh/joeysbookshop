@@ -2,7 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="navbar_color">#FFC477</color>
+    <color name="navbar_color">#fff</color>
     <color name="d_white_n_black">#fff</color>
     <color name="d_blue_n_white">#083863</color>
     <color name="d_black_n_white">#000</color>
@@ -14,6 +14,6 @@
     <color name="d_cream_n_black">#FFF8EF</color>
 
     <color name="d_lgrey_n_dgrey">#666</color>
-    <color name="d_dcream_n_lcoal">#FFC477</color>
+    <color name="d_dcream_n_lcoal">#FFE3BE</color>
 
 </resources>

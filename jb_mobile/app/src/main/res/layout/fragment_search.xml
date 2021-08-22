@@ -42,13 +42,63 @@
                     android:background="@drawable/bg_full_pill_light"
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
+                    android:elevation="8dp"
+                    app:layout_scrollFlags="scroll">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etSearchTitle"
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/transparent"
+                        android:drawableTop="@drawable/ic_a"
+                        android:drawablePadding="10dp"
+                        android:fontFamily="@font/archit_regular"
+                        android:gravity="center"
+                        android:hint="@string/search_by_title"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingHorizontal="12dp"
+                        android:paddingVertical="16dp"
+                        android:textColor="@color/d_black_n_white"
+                        android:textColorHint="@color/d_black_n_white"
+                        android:textSize="16sp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginHorizontal="8dp"
+                        android:layout_marginBottom="4dp"
+                        android:background="@drawable/bg_rect_black" />
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivSearchTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/bg_rect_black"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:padding="12dp"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/ic_check_circle_unfilled" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="225dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="4dp"
+                    android:layout_marginVertical="8dp"
+                    android:background="@drawable/bg_full_pill_light"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:elevation="8dp"
+
                     app:layout_scrollFlags="scroll">
 
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/etSearchAuthor"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
 
+                        android:layout_height="wrap_content"
                         android:background="@android:color/transparent"
                         android:drawableTop="@drawable/ic_pencil"
                         android:drawablePadding="10dp"
@@ -90,54 +140,8 @@
                     android:background="@drawable/bg_full_pill_light"
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
-                    app:layout_scrollFlags="scroll">
+                    android:elevation="8dp"
 
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/etSearchTitle"
-                        android:layout_width="match_parent"
-
-                        android:layout_height="wrap_content"
-                        android:background="@android:color/transparent"
-                        android:drawableTop="@drawable/ic_a"
-                        android:drawablePadding="10dp"
-                        android:fontFamily="@font/archit_regular"
-                        android:gravity="center"
-                        android:hint="@string/search_by_title"
-                        android:inputType="text"
-                        android:maxLines="1"
-                        android:paddingHorizontal="12dp"
-                        android:paddingVertical="16dp"
-                        android:textColor="@color/d_black_n_white"
-                        android:textColorHint="@color/d_black_n_white"
-                        android:textSize="16sp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginHorizontal="8dp"
-                        android:layout_marginBottom="4dp"
-                        android:background="@drawable/bg_rect_black" />
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/ivSearchTitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:background="@drawable/bg_rect_black"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:padding="12dp"
-                        android:scaleType="fitCenter"
-                        app:srcCompat="@drawable/ic_check_circle_unfilled" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="225dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="4dp"
-                    android:layout_marginVertical="8dp"
-                    android:background="@drawable/bg_full_pill_light"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical"
                     app:layout_scrollFlags="scroll">
 
                     <androidx.appcompat.widget.AppCompatEditText
@@ -186,6 +190,8 @@
                     android:background="@drawable/bg_full_pill_light"
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
+                    android:elevation="8dp"
+
                     app:layout_scrollFlags="scroll">
 
                     <androidx.appcompat.widget.AppCompatEditText
@@ -233,6 +239,8 @@
                     android:background="@drawable/bg_full_pill_light"
                     android:gravity="center_horizontal"
                     android:orientation="vertical"
+                    android:elevation="8dp"
+
                     app:layout_scrollFlags="scroll">
 
                     <androidx.appcompat.widget.AppCompatEditText
@@ -275,8 +283,9 @@
 
             </LinearLayout>
         </HorizontalScrollView>
-        
+
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/btSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -301,17 +310,18 @@
             android:padding="12dp"
             android:nestedScrollingEnabled="false"
             tools:listitem="@layout/item_dashboard_book_horizontal"
-            tools:visibility="gone"
+            tools:visibility="invisible"
             />
         <include
             layout="@layout/layout_no_searches"
             android:id="@+id/noSearchesLayout"
-            android:visibility="gone"
+            android:visibility="invisible"
             />
         <com.facebook.shimmer.ShimmerFrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:shimmer_shape="linear"
+            android:visibility="invisible"
             android:layout_marginHorizontal="12dp"
             android:id="@+id/searchShimmer"
             >

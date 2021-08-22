@@ -1,5 +1,6 @@
 package work.curioustools.jb_mobile.modules.dashboard.ui_views
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,7 +21,7 @@ import work.curioustools.jb_mobile.utils.third_party_libs.toJson
 
 class DashBoardFragment : BaseHiltFragment(), VBHolder<FragmentDashboardBinding> by VBHolderImpl() {
 
-    private val dashboardViewModel: DashboardViewModel by viewModels()// viewModels()
+    private val dashboardViewModel: DashboardViewModel by viewModels()
     private val dashboardAdp = AllBooksAdapter(DashboardApi.BASE_URL, ::onBookClick)
 
     override fun onCreateView(
@@ -46,22 +47,36 @@ class DashBoardFragment : BaseHiltFragment(), VBHolder<FragmentDashboardBinding>
     }
 
     private fun onDataReceived(response: BaseResponse<List<BookModel>>?) {
+        getBindingOrError().shimmerDashboard.apply {
+            stopShimmer()
+            setVisible(false)
+        }
         when (response) {
-            is BaseResponse.Failure -> showToastFromFragment(response.toString())
             is BaseResponse.Success -> {
                 dashboardAdp.updateAllEntries(response.body)
             }
-            null -> {
+            else -> {
+                showToastFromFragment(response.toString())
             }
         }
     }
 
     override fun onStart() {
         super.onStart()
-        dashboardViewModel.getBooksList()
+        if(dashboardViewModel.bookListLiveData.value!=null){
+            onDataReceived(dashboardViewModel.bookListLiveData.value)
+        }
+        else{
+            dashboardViewModel.getBooksList()
+        }
+        getBindingOrError().shimmerDashboard.apply {
+            setVisible(true)
+            startShimmer()
+            dashboardAdp.removeAllEntries()
+        }
     }
 
     private fun onBookClick(model: BaseListModel) {
-        binding?.rvDashBoard?.showToastFromView(model.toJson())
+       startActivity(Intent(context,DetailsActivity::class.java))
     }
 }

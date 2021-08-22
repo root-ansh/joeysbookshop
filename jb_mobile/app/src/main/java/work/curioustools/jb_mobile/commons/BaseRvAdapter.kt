@@ -1,5 +1,7 @@
 package work.curioustools.jb_mobile.commons
 
+import android.annotation.SuppressLint
+import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 
@@ -75,26 +77,31 @@ abstract class BaseRvAdapter<VH : BaseVH> : RecyclerView.Adapter<VH>() {
     fun getCurrentEntries(): List<BaseListModel> = entries.toList()
 
 
+    @SuppressLint("NotifyDataSetChanged")
     fun removeAllEntries() {
-        removeEntriesFrom(0, (entries.size - 1))
+        entries.clear()
+        notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun removeEntriesFrom(startingIdx: Int, endingIdx: Int) {
         //note: Both indices are included.
         if (startingIdx !in entries.indices) return
-        if (endingIdx !in entries.indices) return
-        for (idx in startingIdx..endingIdx) {
-            entries.removeAt(idx)
-        }
-        runCatching {
+        val subentries = entries.subList(startingIdx,endingIdx+1)
+        entries.removeAll(subentries)
+
+        try {
             val count = endingIdx - startingIdx + 1
             notifyItemRangeRemoved(startingIdx, count)
-
+        }
+        catch (t:Throwable){
+            Log.e("ADP", "adp function crashed! removeEntriesFrom: $startingIdx - $endingIdx , size = ${entries.size}", t)
+            notifyDataSetChanged()
         }
     }
 
     fun updateAllEntries(newEntries:List<BaseListModel>,payload: Any?=null){
-        entries.clear()
+        removeAllEntries()
         entries.addAll(newEntries)
         notifyItemRangeChanged(0,entries.size,payload)
     }

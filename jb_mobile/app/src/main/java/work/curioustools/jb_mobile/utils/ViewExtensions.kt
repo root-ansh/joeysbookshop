@@ -5,8 +5,19 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
+
+
+fun View.setVisible(show: Boolean, shownButInvisible: Boolean = false) {
+    visibility = if (show) {
+        if (shownButInvisible) View.INVISIBLE else View.VISIBLE
+    } else View.GONE
+}
+
+fun View.setVisibilityInvisible(isShown:Boolean){
+    visibility = if (isShown)  View.VISIBLE  else View.INVISIBLE
+}
+
 
 
 fun View.showKeyboardFromView() = (context as? AppCompatActivity).showKeyboard()//todo verify

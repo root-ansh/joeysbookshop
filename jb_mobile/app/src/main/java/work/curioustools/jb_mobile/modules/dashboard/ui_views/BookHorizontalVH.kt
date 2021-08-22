@@ -18,13 +18,14 @@ class BookHorizontalVH(
 
         with(binding){
             this.ivIcon.setOnClickListener { onClick.invoke(model) }
+            root.setOnClickListener { onClick.invoke(model) }
             tvTitle.text = model.title
             tvSummary.text = if(model.summary.isNotBlank()) model.summary else root.context.getText(R.string.lorem_3_words)
             ivIcon.loadImageFromInternet(
-                "$staticIconUrlWithSlash${model.imageQueryUrl}",
-                R.drawable.bg_rect_gradient_grey,
-                R.drawable.turkey_d_white_n_black,
-                R.drawable.turkey_d_white_n_black
+                url = "$staticIconUrlWithSlash${model.imageQueryUrl}",
+                placeholder =    R.drawable.turkey_d_black_n_white,
+                error =  R.drawable.turkey_d_black_n_white,
+                fallback = R.drawable.turkey_d_black_n_white
             )
         }
     }

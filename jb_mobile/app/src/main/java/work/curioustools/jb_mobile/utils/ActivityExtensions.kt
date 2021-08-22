@@ -41,7 +41,7 @@ fun AppCompatActivity?.showSnackBarFromActivity(
 fun AppCompatActivity.showToastFromActivity(str:String) = showToast(str)
 
 
-
+//https://stackoverflow.com/a/66492857/7500651
 fun AppCompatActivity.setStatusBarColor(@ColorRes res:Int){//todo verify
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) return
 
@@ -59,7 +59,7 @@ fun AppCompatActivity.setSystemBottomNavBarColor(@ColorRes barColor: Int, setCon
         addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         val barColorCode = getColorCompat(barColor)
         navigationBarColor = barColorCode
-       if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.O){
+       if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.O && setContrastingNavIcons){
            var flags = decorView.systemUiVisibility
            flags =
                if (isColorLight(barColorCode))

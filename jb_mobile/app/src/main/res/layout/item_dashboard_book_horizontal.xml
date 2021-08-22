@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="12dp"
+    android:clickable="true"
+    android:focusable="true"
     >
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="0dp"
@@ -21,7 +23,7 @@
         android:id="@+id/ivIcon"
         android:layout_width="100dp"
         android:layout_height="150dp"
-        android:scaleType="fitStart"
+        android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/bg_rect_gradient_grey" />
@@ -45,6 +47,7 @@
             android:ellipsize="end"
             android:gravity="start"
             android:maxLines="2"
+            android:fontFamily="@font/friends_font"
             android:textSize="18sp"
             android:textStyle="bold"
             android:paddingHorizontal="4dp"

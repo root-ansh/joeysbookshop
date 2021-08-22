@@ -7,14 +7,10 @@ import work.curioustools.jb_mobile.commons.BaseHiltActivity
 import work.curioustools.jb_mobile.databinding.ActivityDashboardBinding
 import work.curioustools.jb_mobile.utils.*
 
-class DashboardActivity : BaseHiltActivity(),
-    VBHolder<ActivityDashboardBinding> by VBHolderImpl() {
+class DashboardActivity : BaseHiltActivity(), VBHolder<ActivityDashboardBinding> by VBHolderImpl() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ActivityDashboardBinding.inflate(layoutInflater).setContentView(this)
-        setSystemBottomNavBarColor(R.color.navbar_color)
-        toggleActionBar(false)
-        setStatusBarIconColorAsWhite(isDarkThemeOn())
+        ActivityDashboardBinding.inflate(layoutInflater).setContentViewFor(this)
 
         withBinding {
             PopupMenu(root.context, null).let {

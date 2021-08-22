@@ -43,6 +43,6 @@ interface DashboardRepo {
     suspend fun getBooksList(): BaseResponse<List<BookItemDto>?>
     suspend fun searchBooks(searchBooksRequest: SearchBooksRequest):BaseResponse<List<BookItemDto>?>
     suspend fun updateBook(booksRequest: BookItemDto):BaseResponse<BaseDto?>
-    suspend fun deleteBook(id: DeleteBookRequest):BaseResponse<BaseDto?>
+    suspend fun deleteBook(booksRequest: DeleteBookRequest):BaseResponse<BaseDto?>
 
 }

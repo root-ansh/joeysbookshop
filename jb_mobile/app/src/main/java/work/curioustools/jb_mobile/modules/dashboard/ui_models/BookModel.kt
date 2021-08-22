@@ -4,6 +4,7 @@ import android.os.Parcelable
 import androidx.annotation.Keep
 import kotlinx.parcelize.Parcelize
 import work.curioustools.jb_mobile.commons.BaseListModel
+import work.curioustools.jb_mobile.modules.dashboard.data_apis.BookItemDto
 
 @Keep
 @Parcelize
@@ -18,6 +19,7 @@ data class BookModel(
     val summary: String,
     val year: Int,
     val id: String,
+    val language: String,
     val tags: List<BooksTagModel>,
     var uiType: BookUiType = BookUiType.default()
 ) : BaseListModel, Parcelable {
@@ -44,3 +46,43 @@ data class BookModel(
     }
 }
 
+fun BookItemDto.toModel(): BookModel {
+    val itemDto = this
+
+    return BookModel(
+        price = itemDto.price ?: "",
+        author = itemDto.author ?: "",
+        country = itemDto.country ?: "",
+        imageQueryUrl = itemDto.imageLink ?: "",
+        wiki = itemDto.link ?: "",
+        pages = itemDto.pages ?: 0,
+        title = itemDto.title ?: "",
+        summary = itemDto.summary ?: "",
+        year = itemDto.year ?: 1900,
+        id = itemDto.id ?: "",
+        language = itemDto.language ?: "",
+        tags = (itemDto.tags ?: listOf()).map { BookModel.BooksTagModel(it) },
+        uiType = BookModel.BookUiType.default()
+    )
+
+
+}
+
+fun BookModel.toDto(): BookItemDto {
+    val bookModel = this
+    return BookItemDto(
+        price = bookModel.price,
+        author = bookModel.author,
+        country = bookModel.country,
+        imageLink = bookModel.imageQueryUrl,
+        language = bookModel.language,
+        link = bookModel.wiki,
+        pages = bookModel.pages,
+        title = bookModel.title,
+        summary = bookModel.summary,
+        year = bookModel.year,
+        id = bookModel.id,
+        tags = bookModel.tags.map { it.tag }
+    )
+
+}

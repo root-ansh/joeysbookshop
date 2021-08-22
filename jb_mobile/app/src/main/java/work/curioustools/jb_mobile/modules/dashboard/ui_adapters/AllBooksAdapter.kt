@@ -26,7 +26,6 @@ class AllBooksAdapter(
             BookModel.BookUiType.GRID -> BookVerticalVH(
                 ItemDashboardBookVerticalBinding.inflate(inflater,null,false),
                 staticIconUrlWithSlash , onClick
-
             )
             BookModel.BookUiType.HORIZONTAL ,BookModel.BookUiType.HIGHLIGHT-> {
                 BookHorizontalVH(
@@ -58,8 +57,6 @@ class AllBooksAdapter(
                         BookModel.BookUiType.HORIZONTAL.id -> GRID_MAX_COLS_PER_ROW
                         BookModel.BookUiType.GRID.id -> GRID_MAX_COLS_PER_ROW/GRID_MAX_COLS_PER_ROW
                         else -> GRID_MAX_COLS_PER_ROW
-
-
                     }
                 }
 
