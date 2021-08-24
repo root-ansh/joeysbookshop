@@ -3,22 +3,354 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/d_cream_n_coal"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/d_cream_n_coal">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        tools:ignore="HardcodedText"
+        android:orientation="vertical"
+        >
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvDetails"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivBookImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="300dp"
+            android:minWidth="200dp"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:scaleType="fitCenter" />
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="12dp"
-            tools:listitem="@layout/layout_til" />
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_rect_hollow_dcream"
+            android:hint="@string/title"
+            android:layout_gravity="center"
+            android:padding="8dp"
+            app:boxBackgroundMode="none"
+            app:expandedHintEnabled="true"
+            app:hintEnabled="true"
+            app:hintTextAppearance="@style/hintStyle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:enabled="false"
+                android:imeOptions="actionNext"
+                android:fontFamily="@font/friends_font"
+                android:padding="8dp"
+                android:gravity="center"
+                android:textColor="@color/d_black_n_white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:minHeight="100dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_rect_hollow_dcream"
+                android:hint="author"
+                android:padding="8dp"
+                android:layout_gravity="center"
+                app:boxBackgroundMode="none"
+                app:expandedHintEnabled="true"
+                app:hintEnabled="true"
+                app:hintTextAppearance="@style/hintStyle"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etAuthor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:enabled="false"
+                    android:padding="8dp"
+                    android:imeOptions="actionNext"
+                    android:textColor="@color/d_black_n_white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_rect_hollow_dcream"
+                android:hint="price"
+                android:padding="8dp"
+                android:layout_gravity="center"
+                app:boxBackgroundMode="none"
+                app:expandedHintEnabled="true"
+                app:hintEnabled="true"
+                app:hintTextAppearance="@style/hintStyle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:enabled="false"
+                    android:imeOptions="actionNext"
+                    android:padding="8dp"
+                    android:textColor="@color/d_black_n_white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+        </LinearLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_rect_hollow_dcream"
+            android:hint="Summary"
+            android:padding="8dp"
+
+            android:layout_gravity="center"
+            app:boxBackgroundMode="none"
+            app:expandedHintEnabled="true"
+            app:hintEnabled="true"
+            app:hintTextAppearance="@style/hintStyle"
+
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etSummary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:enabled="false"
+                android:padding="8dp"
+                android:inputType="textMultiLine"
+                android:imeOptions="actionNext"
+                android:textColor="@color/d_black_n_white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:baselineAligned="false"
+            android:minHeight="100dp"
+            android:gravity="center"
+            >
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_rect_hollow_dcream"
+                android:hint="Year of publication"
+                android:padding="8dp"
+                android:layout_gravity="center"
+                app:boxBackgroundMode="none"
+                app:expandedHintEnabled="true"
+                app:hintEnabled="true"
+                app:hintTextAppearance="@style/hintStyle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etYear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:enabled="false"
+                    android:padding="8dp"
+                    android:imeOptions="actionNext"
+                    android:textColor="@color/d_black_n_white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_height="wrap_content"
+
+                android:layout_width="0dp"
+                android:layout_weight="1"
+
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_rect_hollow_dcream"
+                android:hint="Country"
+                android:padding="8dp"
+                android:layout_gravity="center"
+                app:boxBackgroundMode="none"
+                app:expandedHintEnabled="true"
+                app:hintEnabled="true"
+                app:hintTextAppearance="@style/hintStyle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etCountry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:enabled="false"
+                    android:padding="8dp"
+                    android:imeOptions="actionNext"
+                    android:textColor="@color/d_black_n_white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="false"
+            android:minHeight="100dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+
+
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_rect_hollow_dcream"
+                android:hint="Total Pages"
+                android:padding="8dp"
+                android:layout_gravity="center"
+                app:boxBackgroundMode="none"
+                app:expandedHintEnabled="true"
+                app:hintEnabled="true"
+                app:hintTextAppearance="@style/hintStyle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPages"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:enabled="false"
+                    android:inputType="number"
+                    android:padding="8dp"
+                    android:imeOptions="actionNext"
+                    android:textColor="@color/d_black_n_white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+
+
+
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginVertical="12dp"
+                android:background="@drawable/bg_rect_hollow_dcream"
+                android:hint="Lamguage"
+                android:layout_gravity="center"
+                android:padding="8dp"
+                app:boxBackgroundMode="none"
+                app:expandedHintEnabled="true"
+                app:hintEnabled="true"
+                app:hintTextAppearance="@style/hintStyle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etLanguage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:enabled="false"
+                    android:padding="8dp"
+                    android:textColor="@color/d_black_n_white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    tools:text="text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginVertical="12dp"
+            android:background="@drawable/bg_rect_hollow_dcream"
+            android:hint="More info"
+            android:padding="8dp"
+            android:layout_gravity="center"
+            app:boxBackgroundMode="none"
+            app:expandedHintEnabled="true"
+            app:hintEnabled="true"
+            app:hintTextAppearance="@style/hintStyle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etWiki"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="all"
+                android:background="@android:color/transparent"
+                android:focusable="false"
+                android:textColorLink="@color/d_blue_n_white"
+                android:hapticFeedbackEnabled="true"
+                android:imeOptions="actionNext"
+                android:padding="8dp"
+                android:textColor="@color/d_black_n_white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btEditOrUpdate"
             android:layout_width="match_parent"
@@ -31,6 +363,7 @@
 
             android:text="@string/update_book_details"
             android:textStyle="bold"
+            android:textColor="@color/d_white_n_black"
             app:backgroundTint="@color/d_black_n_white"
             app:cornerRadius="48dp"
             app:elevation="0dp" />
@@ -47,7 +380,8 @@
             android:paddingVertical="16dp"
             android:text="@string/delete_this_book"
             android:textStyle="bold"
-            app:backgroundTint="#B50202"
+            app:backgroundTint="@color/d_red_n_yellow"
+            android:textColor="@color/d_white_n_black"
             app:cornerRadius="48dp"
             app:elevation="0dp" />
 

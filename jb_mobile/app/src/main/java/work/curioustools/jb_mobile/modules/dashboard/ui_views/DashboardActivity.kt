@@ -1,7 +1,9 @@
 package work.curioustools.jb_mobile.modules.dashboard.ui_views
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.PopupMenu
+import androidx.appcompat.app.AppCompatActivity
 import work.curioustools.jb_mobile.R
 import work.curioustools.jb_mobile.commons.BaseHiltActivity
 import work.curioustools.jb_mobile.databinding.ActivityDashboardBinding
@@ -25,6 +27,30 @@ class DashboardActivity : BaseHiltActivity(), VBHolder<ActivityDashboardBinding>
             }
 
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == AppCompatActivity.RESULT_OK){
+            when(requestCode){
+                DetailsActivity.CLOSING_WITH_UPDATE ->{
+                    val curFrag= this.supportFragmentManager.currentNavigationFragment
+
+                  if(  curFrag is DashBoardFragment ){
+                      (curFrag).initCall()
+                  }
+                    else if (curFrag is SearchFragment){
+                      (curFrag).searchRequest()
+                  }
+                    else{
+                        showToastFromActivity("activity result called for fragment :${curFrag?.let { it::class.java.simpleName }}")
+                  }
+                }
+            }
+        }
+
+        //NavHostFragment navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host);
+        //navHostFragment.getChildFragmentManager().getFragments().get(0);
     }
 }
 

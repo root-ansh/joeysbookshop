@@ -30,6 +30,16 @@ interface VBHolder<B : ViewBinding> {
         }
     }
 
+    fun <RETURN_TYPE> letBinding(returningBlock : B.()->RETURN_TYPE):RETURN_TYPE{
+        val b = binding
+        if (b == null) {
+            error(ERROR_BINDING_IS_NULL)
+        } else {
+            val data = returningBlock.invoke(b)
+            return data
+        }
+    }
+
 
     /**
      * Make sure to use this with Fragment.viewLifecycleOwner.

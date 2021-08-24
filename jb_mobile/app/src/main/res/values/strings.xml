@@ -19,4 +19,7 @@
     <string name="edit_info">edit info</string>
     <string name="update_book_details">update book details</string>
     <string name="title">title</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

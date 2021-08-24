@@ -14,16 +14,24 @@
         android:theme="@style/Theme.Jb_mobile"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".modules.dashboard.ui_views.DetailsActivity"
-            android:exported="true" />
-        <activity
-            android:name=".modules.dashboard.ui_views.DashboardActivity"
-            android:exported="true">
+            android:name=".modules.dashboard.ui_views.SplashActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:exported="true"
+            android:label="@string/title_activity_splash"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".modules.dashboard.ui_views.DetailsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".modules.dashboard.ui_views.DashboardActivity"
+            android:exported="true">
+
         </activity>
     </application>
 

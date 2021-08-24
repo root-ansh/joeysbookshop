@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 
@@ -44,6 +45,17 @@ class DashBoardFragment : BaseHiltFragment(), VBHolder<FragmentDashboardBinding>
         }
         //set listeners
         dashboardViewModel.bookListLiveData.observe(viewLifecycleOwner, ::onDataReceived)
+
+        initCall()
+    }
+
+    fun initCall() {
+        dashboardAdp.removeAllEntries()
+        dashboardViewModel.getBooksList()
+        getBindingOrError().shimmerDashboard.apply {
+            startShimmer()
+            setVisible(true)
+        }
     }
 
     private fun onDataReceived(response: BaseResponse<List<BookModel>>?) {
@@ -61,22 +73,8 @@ class DashBoardFragment : BaseHiltFragment(), VBHolder<FragmentDashboardBinding>
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        if(dashboardViewModel.bookListLiveData.value!=null){
-            onDataReceived(dashboardViewModel.bookListLiveData.value)
-        }
-        else{
-            dashboardViewModel.getBooksList()
-        }
-        getBindingOrError().shimmerDashboard.apply {
-            setVisible(true)
-            startShimmer()
-            dashboardAdp.removeAllEntries()
-        }
-    }
-
     private fun onBookClick(model: BaseListModel) {
-       startActivity(Intent(context,DetailsActivity::class.java))
+        if (model is BookModel)
+            DetailsActivity.startActivityForResult(requireActivity() as AppCompatActivity,model)
     }
 }

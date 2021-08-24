@@ -12,6 +12,8 @@ import android.view.inputmethod.InputMethodManager
 import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.snackbar.Snackbar.LENGTH_SHORT
@@ -156,3 +158,6 @@ fun AppCompatActivity.findNavControllerByTAG(tag:String):NavController{
     val navHost = supportFragmentManager.findFragmentByTag(tag) as NavHostFragment
     return navHost.navController
 }
+
+val FragmentManager.currentNavigationFragment: Fragment?
+    get() = primaryNavigationFragment?.childFragmentManager?.fragments?.first()

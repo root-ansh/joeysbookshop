@@ -1,6 +1,7 @@
 package work.curioustools.jb_mobile.modules.dashboard.ui_views
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import work.curioustools.jb_mobile.R
@@ -28,6 +30,7 @@ class SearchFragment : BaseHiltFragment(), VBHolder<FragmentSearchBinding> by VB
 
     private val dashboardViewModel: DashboardViewModel by viewModels()
     private val dashboardAdp = AllBooksAdapter(DashboardApi.BASE_URL, ::onBookClick)
+    private var searchBooksRequest: SearchBooksRequest? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -49,7 +52,7 @@ class SearchFragment : BaseHiltFragment(), VBHolder<FragmentSearchBinding> by VB
 
             }
             rvSearchResults.apply {
-                layoutManager = AllBooksAdapter.getLayoutManager(context,dashboardAdp)
+                layoutManager = AllBooksAdapter.getLayoutManager(context, dashboardAdp)
                 adapter = dashboardAdp
             }
             etSearchTitle.addTextChangedListener(StateUpdateWatcher(ivSearchTitle))
@@ -60,7 +63,7 @@ class SearchFragment : BaseHiltFragment(), VBHolder<FragmentSearchBinding> by VB
 
 
             btSearch.setOnClickListener {
-                val searchBooksRequest = SearchBooksRequest(
+                searchBooksRequest = SearchBooksRequest(
                     lang = etSearchLang.text?.toString(),
                     price = null,
                     country = etSearchCountry.text?.toString(),
@@ -68,28 +71,33 @@ class SearchFragment : BaseHiltFragment(), VBHolder<FragmentSearchBinding> by VB
                     title = etSearchTitle.text?.toString(),
                     minPages = etMinPages.text?.toString()?.toIntSafe()
                 )
-                dashboardViewModel.searchForBook(searchBooksRequest)
-                updateState(SearchResultsState.SEARCHING_FOR_DATA)
+                searchRequest()
             }
 
             updateState(SearchResultsState.SCREEN_OPEN)
         }
 
-        dashboardViewModel.searchBookResultsLiveData.observe(viewLifecycleOwner,::onBookListResponse)
+        dashboardViewModel.searchBookResultsLiveData.observe(viewLifecycleOwner, ::onBookListResponse)
 
+    }
+
+     fun searchRequest() {
+         dashboardAdp.removeAllEntries()
+        searchBooksRequest?.let {  dashboardViewModel.searchForBook(it)}
+        updateState(SearchResultsState.SEARCHING_FOR_DATA)
     }
 
     private fun onBookListResponse(response: BaseResponse<List<BookModel>>?) {
 
-        when(response){
+        when (response) {
             is BaseResponse.Success -> {
-                if(response.body.isEmpty()) updateState(SearchResultsState.EMPTY_SEARCH_RESULTS)
+                if (response.body.isEmpty()) updateState(SearchResultsState.EMPTY_SEARCH_RESULTS)
                 else updateState(SearchResultsState.DATA_AVAILABLE)
                 dashboardAdp.updateAllEntries(response.body)
             }
 
-            else ->{
-                showToastFromFragment(response?.statusMsg?:"")
+            else -> {
+                showToastFromFragment(response?.statusMsg ?: "")
                 updateState(SearchResultsState.SCREEN_OPEN)
             }
         }
@@ -97,13 +105,14 @@ class SearchFragment : BaseHiltFragment(), VBHolder<FragmentSearchBinding> by VB
 
 
     private fun onBookClick(model: BaseListModel) {
-        binding?.rvSearchResults?.showToastFromView(model.toJson())
+        if (model is BookModel)
+            DetailsActivity.startActivityForResult(requireActivity() as AppCompatActivity, model)
     }
 
 
-    private fun updateState(state:SearchResultsState){
+    private fun updateState(state: SearchResultsState) {
         withBinding {
-            when(state){
+            when (state) {
                 SearchResultsState.SCREEN_OPEN -> {
                     noSearchesLayout.apply {
                         root.setVisible(true)
@@ -132,7 +141,7 @@ class SearchFragment : BaseHiltFragment(), VBHolder<FragmentSearchBinding> by VB
 
                     noSearchesLayout.root.setVisible(false)
                 }
-                SearchResultsState.EMPTY_SEARCH_RESULTS ->{
+                SearchResultsState.EMPTY_SEARCH_RESULTS -> {
                     noSearchesLayout.apply {
                         root.setVisible(true)
                         tvMessage.text = "No entries available"
@@ -150,17 +159,17 @@ class SearchFragment : BaseHiltFragment(), VBHolder<FragmentSearchBinding> by VB
 
     }
 
-    enum class SearchResultsState{SEARCHING_FOR_DATA,DATA_AVAILABLE,EMPTY_SEARCH_RESULTS,SCREEN_OPEN}
-    class StateUpdateWatcher(private val checkerView:ImageView):TextWatcher{
+    enum class SearchResultsState { SEARCHING_FOR_DATA, DATA_AVAILABLE, EMPTY_SEARCH_RESULTS, SCREEN_OPEN }
+    class StateUpdateWatcher(private val checkerView: ImageView) : TextWatcher {
         override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
         }
 
         override fun onTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            if(text.isNullOrBlank()){
+            if (text.isNullOrBlank()) {
                 checkerView.setImageResource(R.drawable.ic_check_circle_unfilled)
             }
-            else{
+            else {
                 checkerView.setImageResource(R.drawable.ic_check_circle_filled)
             }
         }
