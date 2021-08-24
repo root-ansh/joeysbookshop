@@ -9,6 +9,7 @@ import work.curioustools.jb_mobile.commons.BaseHiltActivity
 import work.curioustools.jb_mobile.databinding.ActivityDashboardBinding
 import work.curioustools.jb_mobile.utils.*
 
+// v2 inspiration : https://dribbble.com/shots/15939181-Joybook-Book-App/attachments/7771899?mode=media
 class DashboardActivity : BaseHiltActivity(), VBHolder<ActivityDashboardBinding> by VBHolderImpl() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
