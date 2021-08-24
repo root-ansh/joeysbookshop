@@ -31,3 +31,9 @@ prerequisites : install node+npm
 2. `npm init`
 3. `nodemon routes.cjs` : will show the url where server is running in terminal
 
+
+## Upcoming 
+
+[ ] ktor
+[ ] many improvements
+
