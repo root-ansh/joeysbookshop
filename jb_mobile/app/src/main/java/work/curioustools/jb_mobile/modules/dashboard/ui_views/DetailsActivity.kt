@@ -9,15 +9,21 @@ import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
+import work.curioustools.core_android.finishDelayed
+import work.curioustools.core_android.showKeyboardForced
+import work.curioustools.core_android.showToast
+import work.curioustools.core_android.startThisActivityForResult
 import work.curioustools.jb_mobile.R
 import work.curioustools.jb_mobile.commons.BaseHiltActivity
 import work.curioustools.jb_mobile.databinding.ActivityDetailsBinding
 import work.curioustools.jb_mobile.modules.dashboard.data_apis.DashboardApi
 import work.curioustools.jb_mobile.modules.dashboard.ui_models.BookModel
 import work.curioustools.jb_mobile.modules.dashboard.ui_viewmodel.DashboardViewModel
-import work.curioustools.jb_mobile.utils.*
-import work.curioustools.jb_mobile.utils.third_party_libs.loadImageFromInternet
 import work.curioustools.jb_mobile.utils.third_party_libs.network_utils.BaseResponse
+import work.curioustools.jb_mobile.utils.toIntSafe
+import work.curioustools.jetpack_lifecycles.VBHolder
+import work.curioustools.jetpack_lifecycles.VBHolderImpl
+import work.curioustools.third_party_network.extensions.loadImageFromInternet
 
 
 class DetailsActivity : BaseHiltActivity(), VBHolder<ActivityDetailsBinding> by VBHolderImpl() {
@@ -106,7 +112,7 @@ class DetailsActivity : BaseHiltActivity(), VBHolder<ActivityDetailsBinding> by 
                 country = etCountry.text.toString(),
                 imageQueryUrl = book?.imageQueryUrl?:"",
                 wiki = etWiki.text.toString(),
-                pages = etPages.text.toString().toIntSafe(),
+                pages = etPages.text.toString().toIntOrNull()?:0,
                 title = etTitle.text.toString(),
                 summary = etSummary.text.toString(),
                 year = etYear.text.toString().toIntSafe(),

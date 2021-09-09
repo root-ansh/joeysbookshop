@@ -21,7 +21,7 @@ enum class AppResponseStatus(val code: Int, val msg: String) {
             return getStatusMsgOrNull(code) ?: UNRECOGNISED.msg
         }
 
-        fun getStatusMsgOrNull(code: Int): String? {
+        private fun getStatusMsgOrNull(code: Int): String? {
             val enumVal = values().firstOrNull { it.code == code }
             return enumVal?.msg
         }

@@ -8,8 +8,8 @@ import android.os.Looper
 
 import work.curioustools.jb_mobile.commons.BaseHiltActivity
 import work.curioustools.jb_mobile.databinding.ActivitySplashBinding
-import work.curioustools.jb_mobile.utils.VBHolder
-import work.curioustools.jb_mobile.utils.VBHolderImpl
+import work.curioustools.jetpack_lifecycles.VBHolder
+import work.curioustools.jetpack_lifecycles.VBHolderImpl
 
 
 @SuppressLint("CustomSplashScreen")

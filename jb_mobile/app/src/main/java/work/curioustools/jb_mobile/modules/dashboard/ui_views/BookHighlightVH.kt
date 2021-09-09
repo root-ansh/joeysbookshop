@@ -9,7 +9,7 @@ import work.curioustools.jb_mobile.commons.BaseVH
 import work.curioustools.jb_mobile.commons.QuickAdapter
 import work.curioustools.jb_mobile.databinding.ItemDashboardBookHighlightBinding
 import work.curioustools.jb_mobile.modules.dashboard.ui_models.BookModel
-import work.curioustools.jb_mobile.utils.third_party_libs.loadImageFromInternet
+import work.curioustools.third_party_network.extensions.loadImageFromInternet
 
 class BookHighlightVH(
     private val binding: ItemDashboardBookHighlightBinding,

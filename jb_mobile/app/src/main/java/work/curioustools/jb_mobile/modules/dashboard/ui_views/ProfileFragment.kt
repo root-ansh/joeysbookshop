@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import work.curioustools.jb_mobile.databinding.FragmentProfileBinding
-import work.curioustools.jb_mobile.utils.VBHolder
-import work.curioustools.jb_mobile.utils.VBHolderImpl
-import work.curioustools.jb_mobile.utils.showToastFromView
+import work.curioustools.jetpack_lifecycles.VBHolder
+import work.curioustools.jetpack_lifecycles.VBHolderImpl
+
 
 class ProfileFragment : Fragment(), VBHolder<FragmentProfileBinding> by VBHolderImpl() {
     override fun onCreateView(

@@ -4,12 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
+import work.curioustools.core_android.currentNavigationFragment
+import work.curioustools.core_android.findNavControllerByTAG
+import work.curioustools.core_android.showToastFromActivity
 import work.curioustools.jb_mobile.R
 import work.curioustools.jb_mobile.commons.BaseHiltActivity
 import work.curioustools.jb_mobile.databinding.ActivityDashboardBinding
-import work.curioustools.jb_mobile.utils.*
+import work.curioustools.jetpack_lifecycles.VBHolder
+import work.curioustools.jetpack_lifecycles.VBHolderImpl
 
-// v2 inspiration : https://dribbble.com/shots/15939181-Joybook-Book-App/attachments/7771899?mode=media
 class DashboardActivity : BaseHiltActivity(), VBHolder<ActivityDashboardBinding> by VBHolderImpl() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

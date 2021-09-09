@@ -1,4 +1,4 @@
-package work.curioustools.jb_mobile.utils.third_party_libs.network_utils.interceptors
+package work.curioustools.jb_mobile.utils.third_party_libs.network_utils
 
 import okhttp3.Interceptor
 import okhttp3.Response

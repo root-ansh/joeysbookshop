@@ -2,7 +2,6 @@ package work.curioustools.jb_mobile.utils.third_party_libs.network_utils
 
 import androidx.annotation.Keep
 import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -14,8 +13,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
-import work.curioustools.jb_mobile.utils.third_party_libs.network_utils.interceptors.HeaderInterceptor
-import java.util.concurrent.TimeUnit
+import work.curioustools.third_party_network.interceptors.LoggingInterceptor
+import work.curioustools.third_party_network.utils.*
 import javax.inject.Qualifier
 import javax.inject.Singleton
 
@@ -24,38 +23,29 @@ import javax.inject.Singleton
 class NetworkDI {
 
     @Singleton @Provides
-    fun getGson(): Gson = GsonBuilder().serializeNulls().create()
+    fun getGson(): Gson = GsonUtils.getGsonObj(true)!!
 
     @Singleton @Provides
-    fun getMoshi(): Moshi = Moshi.Builder().build()
+    fun getMoshi(): Moshi = MoshiUtils.getMoshiObj()!!
 
     @Singleton @Provides
-    fun getGsonConvertor(gson: Gson): GsonConverterFactory = GsonConverterFactory.create(gson)
+    fun getGsonConvertor(gson: Gson): GsonConverterFactory = GsonUtils.createGsonConvertor(gson)!!
 
     @Singleton @Provides
-    fun getMoshiConvertor(moshi: Moshi): MoshiConverterFactory = MoshiConverterFactory.create(moshi)
+    fun getMoshiConvertor(moshi: Moshi): MoshiConverterFactory = MoshiConverterFactory.create(moshi)//todo
 
     @Singleton @Provides
-    fun getScalerConvertor(): ScalarsConverterFactory = ScalarsConverterFactory.create()
+    fun getScalerConvertor(): ScalarsConverterFactory = ScalarConvertorUtils.getConvertorOrError()
 
     @Singleton @Provides
     fun getDefaultLogSeverity(): HttpLoggingInterceptor.Level = HttpLoggingInterceptor.Level.BODY
 
     @Singleton @Provides
-    fun getLogInterceptor(severity: HttpLoggingInterceptor.Level): HttpLoggingInterceptor = HttpLoggingInterceptor().run {
-        level = severity
-        this
-    }
+    fun getLogInterceptor(severity: HttpLoggingInterceptor.Level) = LoggingInterceptor.getInstance(severity)
 
     @Singleton @Provides
-    fun getOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient = OkHttpClient.Builder().run {
-        connectTimeout(1, TimeUnit.MINUTES)
-        writeTimeout(1, TimeUnit.MINUTES)
-        readTimeout(1, TimeUnit.MINUTES)
-        retryOnConnectionFailure(true)
-        addInterceptor(loggingInterceptor)
-        build()
-    }
+    fun getOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient =
+        OkHttpUtils.getClient(loggingInterceptor = loggingInterceptor)
 
     @Singleton @Provides
     fun getTemporaryBaseUrl(): String = "https://www.google.com"
@@ -66,17 +56,17 @@ class NetworkDI {
         scalarConvertor: ScalarsConverterFactory,
         moshiConverter: MoshiConverterFactory,
         okHttpClient: OkHttpClient,
-    ): Retrofit = Retrofit.Builder().run {
-        baseUrl(baseUrl)
-        client(okHttpClient)
-        addConverterFactory(scalarConvertor)
-        addConverterFactory(moshiConverter)
-        build()
-    }
+    ): Retrofit = RetrofitUtils.getRetrofit(
+        baseUrl = baseUrl,
+        externalOkHttpClient = okHttpClient,
+        externalConvertors = mutableListOf(scalarConvertor,moshiConverter),
+        callAdapterFactories = listOf(),
+    )
+
 
 
     @Singleton @Provides @NetworkWithHeaders
-    fun getHeaderInterceptorWithHeaders(): HeaderInterceptor =
+    fun getHeaderInterceptorWithHeaders(): HeaderInterceptor =//todo
         HeaderInterceptor(hashMapOf(HeaderInterceptor.HEADER_DUMMY_API_AUTH_PAIR))
 
 
@@ -84,15 +74,10 @@ class NetworkDI {
     fun getOkHttpClientWithHeaders(
         loggingInterceptor: HttpLoggingInterceptor,
         headerInterceptor: HeaderInterceptor
-    ): OkHttpClient = OkHttpClient.Builder().run {
-        connectTimeout(1, TimeUnit.MINUTES)
-        writeTimeout(1, TimeUnit.MINUTES)
-        readTimeout(1, TimeUnit.MINUTES)
-        retryOnConnectionFailure(true)
-        addInterceptor(loggingInterceptor)
-        addInterceptor(headerInterceptor)
-        build()
-    }
+    ): OkHttpClient = OkHttpUtils.getClient(
+        loggingInterceptor = loggingInterceptor,
+        otherInterceptors = listOf(headerInterceptor)//todo use headers directly
+    )
 
     @Singleton @Provides @NetworkWithHeaders
     fun getRetrofitClientWithHeaders(
@@ -100,38 +85,12 @@ class NetworkDI {
         okHttpClientWithDummyHeaders: OkHttpClient,
         scalarConvertor: ScalarsConverterFactory,
         moshiConverter: MoshiConverterFactory,
-    ): Retrofit = Retrofit.Builder().run {
-        baseUrl(baseUrl)
-        client(okHttpClientWithDummyHeaders)
-        addConverterFactory(scalarConvertor)
-        addConverterFactory(moshiConverter)
-        build()
-    }
+    ): Retrofit = RetrofitUtils.getRetrofit(
+        baseUrl = baseUrl,
+        externalOkHttpClient =okHttpClientWithDummyHeaders,
+        externalConvertors = mutableListOf(scalarConvertor,moshiConverter),
+    )
 
     @Qualifier @Retention(AnnotationRetention.BINARY) @Keep
     annotation class NetworkWithHeaders
-
 }
-
-
-
-
-//@Module
-//class APIDI{
-//
-//
-//    @Singleton @Provides
-//    fun getPostsApi(retrofitWithHeaders: Retrofit) = retrofitWithHeaders.run {
-//        val url =  "https://dummyapi.io/data/api/"
-//        newBuilder().baseUrl(url).build().create(PostsApi::class.java)
-//    }
-//
-//
-//    @Singleton @Provides
-//    fun getAllUsersApi(retrofitWithHeaders: Retrofit) = retrofitWithHeaders.run {
-//        val url =  "https://dummyapi.io/data/api/"
-//        newBuilder().baseUrl(url).build().create(AllUsersApi::class.java)
-//    }
-//
-//
-//}

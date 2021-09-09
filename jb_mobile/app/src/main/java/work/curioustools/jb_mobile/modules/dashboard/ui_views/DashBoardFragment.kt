@@ -7,7 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
+import work.curioustools.core_android.setVisible
+import work.curioustools.core_android.showToastFromFragment
 
 import work.curioustools.jb_mobile.commons.BaseHiltFragment
 import work.curioustools.jb_mobile.commons.BaseListModel
@@ -16,9 +17,9 @@ import work.curioustools.jb_mobile.modules.dashboard.data_apis.DashboardApi
 import work.curioustools.jb_mobile.modules.dashboard.ui_adapters.AllBooksAdapter
 import work.curioustools.jb_mobile.modules.dashboard.ui_models.BookModel
 import work.curioustools.jb_mobile.modules.dashboard.ui_viewmodel.DashboardViewModel
-import work.curioustools.jb_mobile.utils.*
 import work.curioustools.jb_mobile.utils.third_party_libs.network_utils.BaseResponse
-import work.curioustools.jb_mobile.utils.third_party_libs.toJson
+import work.curioustools.jetpack_lifecycles.VBHolder
+import work.curioustools.jetpack_lifecycles.VBHolderImpl
 
 class DashBoardFragment : BaseHiltFragment(), VBHolder<FragmentDashboardBinding> by VBHolderImpl() {
 
