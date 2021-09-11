@@ -14,7 +14,7 @@ import androidx.fragment.app.viewModels
 import work.curioustools.core_android.setVisible
 import work.curioustools.core_android.showToastFromFragment
 import work.curioustools.jb_mobile.R
-import work.curioustools.jb_mobile.commons.BaseHiltFragment
+import work.curioustools.jb_mobile.commons.BaseHiltFragmentVB
 import work.curioustools.jb_mobile.commons.BaseListModel
 import work.curioustools.jb_mobile.databinding.FragmentSearchBinding
 import work.curioustools.jb_mobile.modules.dashboard.data_apis.DashboardApi
@@ -22,26 +22,18 @@ import work.curioustools.jb_mobile.modules.dashboard.data_apis.SearchBooksReques
 import work.curioustools.jb_mobile.modules.dashboard.ui_adapters.AllBooksAdapter
 import work.curioustools.jb_mobile.modules.dashboard.ui_models.BookModel
 import work.curioustools.jb_mobile.modules.dashboard.ui_viewmodel.DashboardViewModel
-import work.curioustools.jetpack_lifecycles.VBHolder
-import work.curioustools.jetpack_lifecycles.VBHolderImpl
 import work.curioustools.third_party_network.base_arch.BaseResponse
 
 @SuppressLint("SetTextI18n")
-class SearchFragment : BaseHiltFragment(), VBHolder<FragmentSearchBinding> by VBHolderImpl() {
+class SearchFragment : BaseHiltFragmentVB<FragmentSearchBinding>(){
 
     private val dashboardViewModel: DashboardViewModel by viewModels()
     private val dashboardAdp = AllBooksAdapter(DashboardApi.BASE_URL, ::onBookClick)
     private var searchBooksRequest: SearchBooksRequest? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ) = FragmentSearchBinding.inflate(inflater, container, false).registeredRoot(this)
+    override fun getBindingForThisComponent(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?)= FragmentSearchBinding.inflate(inflater,container,false)
 
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun setup() {
 
         //initUI
 

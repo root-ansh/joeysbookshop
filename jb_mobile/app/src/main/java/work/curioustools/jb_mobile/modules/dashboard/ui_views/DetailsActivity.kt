@@ -3,39 +3,38 @@ package work.curioustools.jb_mobile.modules.dashboard.ui_views
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
-import android.os.Bundle
+import android.view.LayoutInflater
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
-import work.curioustools.core_android.finishDelayed
-import work.curioustools.core_android.showKeyboardForced
-import work.curioustools.core_android.showToast
-import work.curioustools.core_android.startThisActivityForResult
+import work.curioustools.core_android.*
 import work.curioustools.jb_mobile.R
-import work.curioustools.jb_mobile.commons.BaseHiltActivity
+import work.curioustools.jb_mobile.commons.BaseHiltActivityVB
 import work.curioustools.jb_mobile.databinding.ActivityDetailsBinding
 import work.curioustools.jb_mobile.modules.dashboard.data_apis.DashboardApi
 import work.curioustools.jb_mobile.modules.dashboard.ui_models.BookModel
 import work.curioustools.jb_mobile.modules.dashboard.ui_viewmodel.DashboardViewModel
 import work.curioustools.jb_mobile.commons.toIntSafe
-import work.curioustools.jetpack_lifecycles.VBHolder
-import work.curioustools.jetpack_lifecycles.VBHolderImpl
 import work.curioustools.third_party_network.base_arch.BaseResponse
 import work.curioustools.third_party_network.extensions.loadImageFromInternet
 
+class DetailsActivity : BaseHiltActivityVB<ActivityDetailsBinding>() {
 
-class DetailsActivity : BaseHiltActivity(), VBHolder<ActivityDetailsBinding> by VBHolderImpl() {
     private var isEditing = false
 
     private  var book: BookModel? = null
     private val dashboardViewModel: DashboardViewModel by viewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        ActivityDetailsBinding.inflate(layoutInflater).setContentViewFor(this)
+    override fun getBindingForComponent(layoutInflater: LayoutInflater)=  ActivityDetailsBinding.inflate(layoutInflater)
 
-         book = intent.getParcelableExtra<BookModel>(BOOK)
+    override fun setup()  {
+        setSystemBottomNavBarColor(R.color.black)           //todo systemSetColorForBottomNavBar()
+        toggleActionBar(false)                        //todo systemToggleThemeProvidedActionBar()
+        setStatusBarIconColorAsWhite(isDarkThemeOn())       //todo systemSetStatusBarIconsAsWhite()
+        setStatusBarColor(R.color.black)
+
+         book = intent.getParcelableExtra(DetailsActivity.BOOK)
         book?.let {
             withBinding {
                 etTitle.setText(it.title)

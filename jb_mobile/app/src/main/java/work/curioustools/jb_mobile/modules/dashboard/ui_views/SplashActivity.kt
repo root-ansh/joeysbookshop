@@ -1,23 +1,22 @@
 package work.curioustools.jb_mobile.modules.dashboard.ui_views
 
-import android.annotation.SuppressLint
 import android.content.Intent
-import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-
-import work.curioustools.jb_mobile.commons.BaseHiltActivity
+import android.view.LayoutInflater
+import work.curioustools.core_android.*
+import work.curioustools.jb_mobile.R
+import work.curioustools.jb_mobile.commons.BaseCommonActivityVB
 import work.curioustools.jb_mobile.databinding.ActivitySplashBinding
-import work.curioustools.jetpack_lifecycles.VBHolder
-import work.curioustools.jetpack_lifecycles.VBHolderImpl
 
+class SplashActivity : BaseCommonActivityVB<ActivitySplashBinding>(){
+    override fun getBindingForComponent(layoutInflater: LayoutInflater)= ActivitySplashBinding.inflate(layoutInflater)
 
-@SuppressLint("CustomSplashScreen")
-class SplashActivity : BaseHiltActivity(), VBHolder<ActivitySplashBinding> by VBHolderImpl() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        ActivitySplashBinding.inflate(layoutInflater).setContentViewFor(this)
-        Handler(Looper.getMainLooper()).postDelayed({
+    override fun setup() {
+        setSystemBottomNavBarColor(R.color.black)           //todo systemSetColorForBottomNavBar()
+        toggleActionBar(false)                        //todo systemToggleThemeProvidedActionBar()
+        setStatusBarIconColorAsWhite(isDarkThemeOn())       //todo systemSetStatusBarIconsAsWhite()
+        setStatusBarColor(R.color.black)
+
+        activityHandler.postDelayed({
 
             runOnUiThread {
                 finish()

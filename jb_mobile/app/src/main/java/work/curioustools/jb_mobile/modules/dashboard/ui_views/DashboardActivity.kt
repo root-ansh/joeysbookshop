@@ -1,35 +1,33 @@
 package work.curioustools.jb_mobile.modules.dashboard.ui_views
 
 import android.content.Intent
-import android.os.Bundle
+import android.view.LayoutInflater
 import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
-import work.curioustools.core_android.currentNavigationFragment
-import work.curioustools.core_android.findNavControllerByTAG
-import work.curioustools.core_android.showToastFromActivity
+import work.curioustools.core_android.*
 import work.curioustools.jb_mobile.R
-import work.curioustools.jb_mobile.commons.BaseHiltActivity
+import work.curioustools.jb_mobile.commons.BaseHiltActivityVB
 import work.curioustools.jb_mobile.databinding.ActivityDashboardBinding
-import work.curioustools.jetpack_lifecycles.VBHolder
-import work.curioustools.jetpack_lifecycles.VBHolderImpl
 
-class DashboardActivity : BaseHiltActivity(), VBHolder<ActivityDashboardBinding> by VBHolderImpl() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        ActivityDashboardBinding.inflate(layoutInflater).setContentViewFor(this)
+class DashboardActivity : BaseHiltActivityVB<ActivityDashboardBinding>(){
+    override fun getBindingForComponent(layoutInflater: LayoutInflater)= ActivityDashboardBinding.inflate(layoutInflater)
+
+    override fun setup() {
+        setSystemBottomNavBarColor(R.color.navbar_color)           //todo systemSetColorForBottomNavBar()
+        toggleActionBar(false)                        //todo systemToggleThemeProvidedActionBar()
+        setStatusBarIconColorAsWhite(isDarkThemeOn())       //todo systemSetStatusBarIconsAsWhite()
+        setStatusBarColor(R.color.navbar_color)
 
         withBinding {
-            PopupMenu(root.context, null).let {
-                it.inflate(R.menu.menu_dashboard)
-                val menu = it.menu
-                val hostTag = (getString(R.string.host_fragment_tag))
-                val controller = findNavControllerByTAG(hostTag)
+            val popupMenu = PopupMenu(root.context, null)
+            popupMenu.inflate(R.menu.menu_dashboard)
+            val menu = popupMenu.menu
+            val hostTag = (getString(R.string.host_fragment_tag))
+            val controller = findNavControllerByTAG(hostTag)
 
-                if (menu != null) {
-                    navBar.setupWithNavController(menu,controller)
-                }
+            if (menu != null) {
+                navBar.setupWithNavController(menu, controller)
             }
-
         }
     }
 
