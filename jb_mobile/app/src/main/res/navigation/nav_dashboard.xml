@@ -7,18 +7,18 @@
 
     <fragment
         android:id="@+id/dashBoardFragment"
-        android:name="work.curioustools.jb_mobile.modules.dashboard.ui_views.DashBoardFragment"
+        android:name="work.curioustools.jb_mobile.ui_views.DashBoardFragment"
         tools:layout="@layout/fragment_dashboard"
         android:label="DashBoardFragment" />
     <fragment
         android:id="@+id/searchFragment"
-        android:name="work.curioustools.jb_mobile.modules.dashboard.ui_views.SearchFragment"
+        android:name="work.curioustools.jb_mobile.ui_views.SearchFragment"
         android:label="SearchFragment"
         tools:layout="@layout/fragment_search"
         />
     <fragment
         android:id="@+id/profileFragment"
         tools:layout="@layout/fragment_profile"
-        android:name="work.curioustools.jb_mobile.modules.dashboard.ui_views.ProfileFragment"
+        android:name="work.curioustools.jb_mobile.ui_views.ProfileFragment"
         android:label="ProfileFragment" />
 </navigation>

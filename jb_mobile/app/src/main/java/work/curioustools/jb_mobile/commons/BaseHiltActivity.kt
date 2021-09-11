@@ -22,6 +22,7 @@ abstract class BaseHiltActivity:AppCompatActivity(){//todo core-android-hilt
         Handler(looper)
     }
 }
+
 abstract class BaseHiltActivityVB<VB:ViewBinding>:BaseHiltActivity(), VBHolder<VB> by VBHolderImpl() {
      override fun onCreate(savedInstanceState: Bundle?) {
          super.onCreate(savedInstanceState)
@@ -35,49 +36,11 @@ abstract class BaseHiltActivityVB<VB:ViewBinding>:BaseHiltActivity(), VBHolder<V
  }
 
 @AndroidEntryPoint
-abstract class BaseHiltFragment : Fragment() {
-}
+abstract class BaseHiltFragment : Fragment()
 
 abstract class BaseHiltFragmentVB<VB : ViewBinding> :
     BaseHiltFragment(),
     VBHolder<VB> by VBHolderImpl() {
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return getBindingForThisComponent(inflater, container, savedInstanceState).registeredRoot(this)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setup()
-    }
-
-    abstract fun getBindingForThisComponent(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): VB
-    abstract fun setup()
-}
-
-
-/////=============non hilt
-
-abstract class BaseCommonActivity:AppCompatActivity(){
-
-    val activityHandler: Handler by lazy {
-        val looper = Looper.getMainLooper()
-        Handler(looper)
-    }
-}
-abstract class BaseCommonActivityVB<VB:ViewBinding>:BaseCommonActivity(), VBHolder<VB> by VBHolderImpl() {
-    override fun onCreate(savedInstanceState: Bundle? ) {
-        super.onCreate(savedInstanceState)
-        getBindingForComponent(layoutInflater).setContentViewFor(this)
-        setup()
-
-    }
-    abstract fun getBindingForComponent(layoutInflater: LayoutInflater):VB
-    abstract fun setup()
-}
-
-abstract class BaseCommonFragment : Fragment()
-abstract class BaseCommonFragmentVB<VB : ViewBinding> : BaseCommonFragment(), VBHolder<VB> by VBHolderImpl() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return getBindingForThisComponent(inflater, container, savedInstanceState).registeredRoot(this)

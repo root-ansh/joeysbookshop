@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/d_cream_n_coal"
-    tools:context=".modules.dashboard.ui_views.SplashActivity">
+    tools:context=".ui_views.SplashActivity">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivIcon"

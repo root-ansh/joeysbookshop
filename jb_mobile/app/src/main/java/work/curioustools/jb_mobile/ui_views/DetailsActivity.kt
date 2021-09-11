@@ -1,4 +1,4 @@
-package work.curioustools.jb_mobile.modules.dashboard.ui_views
+package work.curioustools.jb_mobile.ui_views
 
 import android.content.Intent
 import android.net.Uri
@@ -13,9 +13,9 @@ import work.curioustools.curiousutils.core_droidjet.extensions.*
 import work.curioustools.jb_mobile.R
 import work.curioustools.jb_mobile.commons.BaseHiltActivityVB
 import work.curioustools.jb_mobile.databinding.ActivityDetailsBinding
-import work.curioustools.jb_mobile.modules.dashboard.data_apis.DashboardApi
-import work.curioustools.jb_mobile.modules.dashboard.ui_models.BookModel
-import work.curioustools.jb_mobile.modules.dashboard.ui_viewmodel.DashboardViewModel
+import work.curioustools.jb_mobile.data_apis.DashboardApi
+import work.curioustools.jb_mobile.ui_models.BookModel
+import work.curioustools.jb_mobile.ui_viewmodel.DashboardViewModel
 import work.curioustools.third_party_network.arch_network.BaseResponse
 import work.curioustools.third_party_network.extensions.loadImageFromInternet
 

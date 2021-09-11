@@ -1,11 +1,11 @@
-package work.curioustools.jb_mobile.modules.dashboard.data_di
+package work.curioustools.jb_mobile.data_di
 
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
-import work.curioustools.jb_mobile.modules.dashboard.data_apis.DashboardApi
+import work.curioustools.jb_mobile.data_apis.DashboardApi
 import javax.inject.Singleton
 
 @Module @InstallIn(SingletonComponent::class)

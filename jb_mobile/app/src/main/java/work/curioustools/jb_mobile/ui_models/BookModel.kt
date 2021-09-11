@@ -1,10 +1,10 @@
-package work.curioustools.jb_mobile.modules.dashboard.ui_models
+package work.curioustools.jb_mobile.ui_models
 
 import android.os.Parcelable
 import androidx.annotation.Keep
 import kotlinx.parcelize.Parcelize
-import work.curioustools.jb_mobile.commons.BaseListModel
-import work.curioustools.jb_mobile.modules.dashboard.data_apis.BookItemDto
+import work.curioustools.curiousutils.core_droidjet.arch.BaseListModel
+import work.curioustools.jb_mobile.data_apis.BookItemDto
 
 @Keep
 @Parcelize

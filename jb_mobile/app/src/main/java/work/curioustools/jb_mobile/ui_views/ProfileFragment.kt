@@ -1,9 +1,9 @@
-package work.curioustools.jb_mobile.modules.dashboard.ui_views
+package work.curioustools.jb_mobile.ui_views
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import work.curioustools.jb_mobile.commons.BaseCommonFragmentVB
+import work.curioustools.curiousutils.core_droidjet.arch.BaseCommonFragmentVB
 import work.curioustools.jb_mobile.databinding.FragmentProfileBinding
 
 class ProfileFragment : BaseCommonFragmentVB<FragmentProfileBinding>() {

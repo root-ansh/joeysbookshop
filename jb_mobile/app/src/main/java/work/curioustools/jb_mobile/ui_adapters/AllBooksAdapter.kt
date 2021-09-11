@@ -1,25 +1,27 @@
-package work.curioustools.jb_mobile.modules.dashboard.ui_adapters
+package work.curioustools.jb_mobile.ui_adapters
 
 import android.content.Context
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import work.curioustools.curiousutils.core_droidjet.extensions.rvInflater
-import work.curioustools.jb_mobile.commons.BaseListModel
-import work.curioustools.jb_mobile.commons.BaseRvAdapter
-import work.curioustools.jb_mobile.commons.BaseVH
 import work.curioustools.jb_mobile.databinding.ItemDashboardBookHorizontalBinding
 import work.curioustools.jb_mobile.databinding.ItemDashboardBookVerticalBinding
-import work.curioustools.jb_mobile.modules.dashboard.ui_models.BookModel
-import work.curioustools.jb_mobile.modules.dashboard.ui_views.BookHorizontalVH
-import work.curioustools.jb_mobile.modules.dashboard.ui_views.BookVerticalVH
+import work.curioustools.jb_mobile.ui_models.BookModel
+import work.curioustools.jb_mobile.ui_views.BookHorizontalVH
+import work.curioustools.jb_mobile.ui_views.BookVerticalVH
+
+import work.curioustools.curiousutils.core_droidjet.arch.BaseListModel
+import work.curioustools.curiousutils.core_droidjet.arch.BaseRvAdapter
+import work.curioustools.curiousutils.core_droidjet.arch.BaseVHWithVB
+
 
 class AllBooksAdapter(
     private val staticIconUrlWithSlash:String,
     private val onClick: (BaseListModel) -> Unit
 )
-    :BaseRvAdapter<BaseVH>() {
+    : BaseRvAdapter<BaseVHWithVB>() { //todo baseVH me binddata, base vh with vb me nahi
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseVH {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseVHWithVB {
         val uiType = BookModel.BookUiType.getTypeByID(viewType)
         val inflater = parent.rvInflater()
         return when(uiType){
@@ -37,7 +39,7 @@ class AllBooksAdapter(
     }
 
 
-    override fun onBindVH(holder: BaseVH, position: Int, payloads: MutableList<Any>?) {
+    override fun onBindVH(holder: BaseVHWithVB, position: Int, payloads: MutableList<Any>?) {
        holder.bindData(getCurrentEntries()[position],payloads)
     }
 

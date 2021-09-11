@@ -1,9 +1,9 @@
-package work.curioustools.jb_mobile.modules.dashboard.data_repos
+package work.curioustools.jb_mobile.data_repos
 
-import work.curioustools.jb_mobile.modules.dashboard.data_apis.BookItemDto
-import work.curioustools.jb_mobile.modules.dashboard.data_apis.DashboardApi
-import work.curioustools.jb_mobile.modules.dashboard.data_apis.DeleteBookRequest
-import work.curioustools.jb_mobile.modules.dashboard.data_apis.SearchBooksRequest
+import work.curioustools.jb_mobile.data_apis.BookItemDto
+import work.curioustools.jb_mobile.data_apis.DashboardApi
+import work.curioustools.jb_mobile.data_apis.DeleteBookRequest
+import work.curioustools.jb_mobile.data_apis.SearchBooksRequest
 import work.curioustools.third_party_network.arch_network.BaseDto
 
 import work.curioustools.third_party_network.arch_network.BaseResponse

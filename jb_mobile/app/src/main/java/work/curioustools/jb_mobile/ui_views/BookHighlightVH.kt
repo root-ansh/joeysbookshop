@@ -1,21 +1,21 @@
-package work.curioustools.jb_mobile.modules.dashboard.ui_views
+package work.curioustools.jb_mobile.ui_views
 
 import android.view.View
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.material.textview.MaterialTextView
-import work.curioustools.jb_mobile.R
-import work.curioustools.jb_mobile.commons.BaseListModel
-import work.curioustools.jb_mobile.commons.BaseVH
-import work.curioustools.jb_mobile.commons.QuickAdapter
 import work.curioustools.jb_mobile.databinding.ItemDashboardBookHighlightBinding
-import work.curioustools.jb_mobile.modules.dashboard.ui_models.BookModel
+import work.curioustools.jb_mobile.ui_models.BookModel
+import work.curioustools.curiousutils.core_droidjet.arch.BaseListModel
+import work.curioustools.curiousutils.core_droidjet.arch.BaseVHWithVB
+import work.curioustools.jb_mobile.R
+import work.curioustools.jb_mobile.commons.QuickAdapter
 import work.curioustools.third_party_network.extensions.loadImageFromInternet
 
 class BookHighlightVH(
     private val binding: ItemDashboardBookHighlightBinding,
     private val staticIconUrlWithSlash: String,
     private val onClick:(BaseListModel) -> Unit
-) : BaseVH(binding) {
+) : BaseVHWithVB(binding) {
 
     override fun bindData(model: BaseListModel, payload: Any?) {
         if (model !is BookModel) return

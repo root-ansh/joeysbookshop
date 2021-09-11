@@ -63,7 +63,10 @@ class NetworkDI {
     @Provides
     fun getOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return if (AppConfig.isDebug()) {
-            OkHttpUtils.getDebugClient() //todo custom options for debugging
+            OkHttpUtils.getClient(
+                loggingInterceptor = loggingInterceptor
+            )
+           // OkHttpUtils.getDebugClient() //todo custom options for debugging
         }
         else {
             val oneMinute  = Pair(1L, TimeUnit.MINUTES)
@@ -86,7 +89,7 @@ class NetworkDI {
 
     @Singleton
     @Provides
-    fun getTemporaryBaseUrl() = "https://www.google.com"
+    fun getTemporaryBaseUrl():String = "https://www.google.com"
 
     @Singleton
     @Provides

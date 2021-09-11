@@ -1,4 +1,4 @@
-package work.curioustools.jb_mobile.modules.dashboard.ui_views
+package work.curioustools.jb_mobile.ui_views
 
 import android.content.Intent
 import android.view.LayoutInflater

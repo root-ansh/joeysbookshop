@@ -1,4 +1,4 @@
-package work.curioustools.jb_mobile.modules.dashboard.data_apis
+package work.curioustools.jb_mobile.data_apis
 
 import androidx.annotation.Keep
 

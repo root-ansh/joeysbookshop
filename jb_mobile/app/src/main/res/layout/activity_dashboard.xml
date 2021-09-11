@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/d_cream_n_black"
-    tools:context=".modules.dashboard.ui_views.DashboardActivity">
+    tools:context=".ui_views.DashboardActivity">
 
     <fragment
         android:id="@+id/dashboardNavHost"

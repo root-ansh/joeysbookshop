@@ -14,7 +14,7 @@
         android:theme="@style/Theme.Jb_mobile"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".modules.dashboard.ui_views.SplashActivity"
+            android:name="work.curioustools.jb_mobile.ui_views.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true"
             android:label="@string/title_activity_splash"
@@ -26,10 +26,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".modules.dashboard.ui_views.DetailsActivity"
+            android:name="work.curioustools.jb_mobile.ui_views.DetailsActivity"
             android:exported="true" />
         <activity
-            android:name=".modules.dashboard.ui_views.DashboardActivity"
+            android:name="work.curioustools.jb_mobile.ui_views.DashboardActivity"
             android:exported="true">
 
         </activity>

@@ -1,27 +1,25 @@
-package work.curioustools.jb_mobile.modules.dashboard.ui_views
+package work.curioustools.jb_mobile.ui_views
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
-import work.curioustools.curiousutils.core_droidjet.extensions.setVisible
 import work.curioustools.curiousutils.core_droidjet.extensions.showToastFromFragment
 import work.curioustools.jb_mobile.R
 import work.curioustools.jb_mobile.commons.BaseHiltFragmentVB
-import work.curioustools.jb_mobile.commons.BaseListModel
+import work.curioustools.curiousutils.core_droidjet.arch.BaseListModel
+import work.curioustools.curiousutils.core_droidjet.extensions.setVisible
 import work.curioustools.jb_mobile.databinding.FragmentSearchBinding
-import work.curioustools.jb_mobile.modules.dashboard.data_apis.DashboardApi
-import work.curioustools.jb_mobile.modules.dashboard.data_apis.SearchBooksRequest
-import work.curioustools.jb_mobile.modules.dashboard.ui_adapters.AllBooksAdapter
-import work.curioustools.jb_mobile.modules.dashboard.ui_models.BookModel
-import work.curioustools.jb_mobile.modules.dashboard.ui_viewmodel.DashboardViewModel
+import work.curioustools.jb_mobile.data_apis.DashboardApi
+import work.curioustools.jb_mobile.data_apis.SearchBooksRequest
+import work.curioustools.jb_mobile.ui_adapters.AllBooksAdapter
+import work.curioustools.jb_mobile.ui_models.BookModel
+import work.curioustools.jb_mobile.ui_viewmodel.DashboardViewModel
 import work.curioustools.third_party_network.arch_network.BaseResponse
 
 @SuppressLint("SetTextI18n")

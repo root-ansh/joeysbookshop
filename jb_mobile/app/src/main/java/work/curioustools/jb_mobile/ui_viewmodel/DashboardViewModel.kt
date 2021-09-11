@@ -1,19 +1,19 @@
-package work.curioustools.jb_mobile.modules.dashboard.ui_viewmodel
+package work.curioustools.jb_mobile.ui_viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import work.curioustools.jb_mobile.modules.dashboard.data_apis.DeleteBookRequest
-import work.curioustools.jb_mobile.modules.dashboard.data_apis.SearchBooksRequest
-import work.curioustools.jb_mobile.modules.dashboard.domain_usecases.BookListUseCase
-import work.curioustools.jb_mobile.modules.dashboard.domain_usecases.DeleteBookUseCase
-import work.curioustools.jb_mobile.modules.dashboard.domain_usecases.SearchBooksUseCase
-import work.curioustools.jb_mobile.modules.dashboard.domain_usecases.UpdateBookUseCase
-import work.curioustools.jb_mobile.modules.dashboard.ui_models.BookModel
-import work.curioustools.jb_mobile.modules.dashboard.ui_models.toDto
-import work.curioustools.jb_mobile.modules.dashboard.ui_models.toModel
+import work.curioustools.jb_mobile.data_apis.DeleteBookRequest
+import work.curioustools.jb_mobile.data_apis.SearchBooksRequest
+import work.curioustools.jb_mobile.domain_usecases.BookListUseCase
+import work.curioustools.jb_mobile.domain_usecases.DeleteBookUseCase
+import work.curioustools.jb_mobile.domain_usecases.SearchBooksUseCase
+import work.curioustools.jb_mobile.domain_usecases.UpdateBookUseCase
+import work.curioustools.jb_mobile.ui_models.BookModel
+import work.curioustools.jb_mobile.ui_models.toDto
+import work.curioustools.jb_mobile.ui_models.toModel
 import work.curioustools.third_party_network.arch_network.BaseResponse
 import javax.inject.Inject
 

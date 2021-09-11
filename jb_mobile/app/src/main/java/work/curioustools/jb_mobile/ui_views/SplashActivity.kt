@@ -1,10 +1,10 @@
-package work.curioustools.jb_mobile.modules.dashboard.ui_views
+package work.curioustools.jb_mobile.ui_views
 
 import android.content.Intent
 import android.view.LayoutInflater
+import work.curioustools.curiousutils.core_droidjet.arch.BaseCommonActivityVB
 import work.curioustools.curiousutils.core_droidjet.extensions.*
 import work.curioustools.jb_mobile.R
-import work.curioustools.jb_mobile.commons.BaseCommonActivityVB
 import work.curioustools.jb_mobile.databinding.ActivitySplashBinding
 
 class SplashActivity : BaseCommonActivityVB<ActivitySplashBinding>(){
