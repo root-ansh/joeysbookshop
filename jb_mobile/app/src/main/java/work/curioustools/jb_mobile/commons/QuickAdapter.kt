@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-//todo convert to vb
+//todo convert to vb// move to curiousutils
 class QuickAdapter<T> (
     private val items:List<T>,
     private val layoutRes : Int,

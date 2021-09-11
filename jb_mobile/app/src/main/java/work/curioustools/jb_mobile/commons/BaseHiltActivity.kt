@@ -11,8 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import dagger.hilt.android.AndroidEntryPoint
-import work.curioustools.jetpack_lifecycles.VBHolder
-import work.curioustools.jetpack_lifecycles.VBHolderImpl
+import work.curioustools.curiousutils.core_droidjet.vb_helpers.VBHolder
+import work.curioustools.curiousutils.core_droidjet.vb_helpers.VBHolderImpl
 
 @AndroidEntryPoint
 abstract class BaseHiltActivity:AppCompatActivity(){//todo core-android-hilt

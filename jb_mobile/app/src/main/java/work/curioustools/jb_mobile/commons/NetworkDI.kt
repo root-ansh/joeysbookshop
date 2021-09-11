@@ -1,6 +1,5 @@
 package work.curioustools.jb_mobile.commons
 
-import androidx.annotation.Keep
 import com.google.gson.Gson
 import com.squareup.moshi.Moshi
 import dagger.Module
@@ -13,10 +12,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
-import work.curioustools.third_party_network.interceptors.HeaderInterceptor
-import work.curioustools.third_party_network.interceptors.LoggingInterceptor
+import work.curioustools.third_party_network.interceptors.OkHttpLoggingInterceptorUtils
 import work.curioustools.third_party_network.utils.*
-import javax.inject.Qualifier
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 
@@ -27,25 +25,25 @@ class NetworkDI {
     @Singleton
     @Provides
     fun getGson(): Gson {
-        return GsonUtils.getGsonObj(true)!! // todo get gson or error
+        return GsonUtils.getGsonOrError(true)
     }
 
     @Singleton
     @Provides
     fun getMoshi(): Moshi {
-        return MoshiUtils.getMoshiObj()!!//todo get moshi or error
+        return MoshiUtils.getMoshiOrError()
     }
 
     @Singleton
     @Provides
     fun getGsonConvertor(gson: Gson): GsonConverterFactory {
-        return GsonUtils.createGsonConvertor(gson)!!
+        return GsonUtils.getGsonConvertorOrError(gson)
     } // get gsonConvertor or error
 
     @Singleton
     @Provides
     fun getMoshiConvertor(moshi: Moshi): MoshiConverterFactory {
-        return MoshiUtils.getMoshiConvertorOrError() // todo  accept moshi instance
+        return MoshiUtils.getMoshiConvertorOrError(moshi)
     }
 
     @Singleton
@@ -58,19 +56,31 @@ class NetworkDI {
     @Singleton
     @Provides
     fun getLogInterceptor(): HttpLoggingInterceptor {
-        return LoggingInterceptor.getInstance(HttpLoggingInterceptor.Level.BODY)//todo HttpLoggingInterceptorutils
+        return OkHttpLoggingInterceptorUtils.getInterceptor(HttpLoggingInterceptor.Level.BODY)
     }
 
     @Singleton
     @Provides
     fun getOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
-        return if (AppConfig.isDebug()) {//todo null by default
-            OkHttpUtils.getClient(
-                loggingInterceptor = loggingInterceptor
-            )
+        return if (AppConfig.isDebug()) {
+            OkHttpUtils.getDebugClient() //todo custom options for debugging
         }
         else {
-            OkHttpUtils.getClient(loggingInterceptor = null)
+            val oneMinute  = Pair(1L, TimeUnit.MINUTES)
+            OkHttpUtils.getClient(
+                connectTimeout = oneMinute,
+                writeTimeout = oneMinute,
+                readTimeout = oneMinute,
+                retryOnConnectionFailure = true,
+                headerInterceptor = null,
+                loggingInterceptor = null,
+                internetCheckInterceptor = null,
+                otherInterceptors = listOf(),
+                stetho = null,
+                otherNetworkInterceptors = listOf(),
+                socketFactory = null
+
+            )
         }
     }
 
@@ -88,53 +98,10 @@ class NetworkDI {
     ): Retrofit {
         return RetrofitUtils.getRetrofit(
             baseUrl = baseUrl,
-            externalOkHttpClient = okHttpClient,
-            externalConvertors = mutableListOf(scalarConvertor, moshiConverter),//todo : by default empty, make special object for retrofit with moshi/scale default
+            okHttpClient = okHttpClient,
+            externalConvertors = mutableListOf(scalarConvertor, moshiConverter),//todo : support moshi 1.12
             callAdapterFactories = listOf(),
         )
     }
-
-    @Singleton
-    @Provides
-    @NetworkWithHeaders
-    fun getHeaderInterceptor(): HeaderInterceptor //todo not needed here
-    {
-        return HeaderInterceptor(hashMapOf(HeaderInterceptor.HEADER_CONTENT_TYPE_PAIR))
-    }
-
-
-    @Singleton
-    @Provides
-    @NetworkWithHeaders
-    fun getOkHttpClientWithHeaders(
-        loggingInterceptor: HttpLoggingInterceptor,
-        headerInterceptor: HeaderInterceptor
-    ): OkHttpClient {
-        return OkHttpUtils.getClient(
-            loggingInterceptor = loggingInterceptor,
-            otherInterceptors = listOf(headerInterceptor)//todo use headers directly
-        )
-    }
-
-    @Singleton
-    @Provides
-    @NetworkWithHeaders
-    fun getRetrofitClientWithHeaders(
-        baseUrl: String,
-        okHttpClientWithDummyHeaders: OkHttpClient,
-        scalarConvertor: ScalarsConverterFactory,
-        moshiConverter: MoshiConverterFactory,
-    ): Retrofit {
-        return RetrofitUtils.getRetrofit(
-            baseUrl = baseUrl,
-            externalOkHttpClient = okHttpClientWithDummyHeaders,
-            externalConvertors = mutableListOf(scalarConvertor, moshiConverter),
-        )
-    }
-
-    @Qualifier
-    @Retention(AnnotationRetention.BINARY)
-    @Keep
-    annotation class NetworkWithHeaders
 
 }

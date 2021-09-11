@@ -4,10 +4,10 @@ import work.curioustools.jb_mobile.modules.dashboard.data_apis.BookItemDto
 import work.curioustools.jb_mobile.modules.dashboard.data_apis.DashboardApi
 import work.curioustools.jb_mobile.modules.dashboard.data_apis.DeleteBookRequest
 import work.curioustools.jb_mobile.modules.dashboard.data_apis.SearchBooksRequest
-import work.curioustools.third_party_network.base_arch.BaseDto
+import work.curioustools.third_party_network.arch_network.BaseDto
 
-import work.curioustools.third_party_network.base_arch.BaseResponse
-import work.curioustools.third_party_network.base_arch.convertTo
+import work.curioustools.third_party_network.arch_network.BaseResponse
+import work.curioustools.third_party_network.arch_network.convertTo
 import work.curioustools.third_party_network.extensions.executeAndUnify
 import javax.inject.Inject
 

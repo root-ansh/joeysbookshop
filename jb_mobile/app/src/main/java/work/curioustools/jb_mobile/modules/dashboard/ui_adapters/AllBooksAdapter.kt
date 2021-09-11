@@ -1,10 +1,9 @@
 package work.curioustools.jb_mobile.modules.dashboard.ui_adapters
 
 import android.content.Context
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import work.curioustools.core_android.rvInflater
+import work.curioustools.curiousutils.core_droidjet.extensions.rvInflater
 import work.curioustools.jb_mobile.commons.BaseListModel
 import work.curioustools.jb_mobile.commons.BaseRvAdapter
 import work.curioustools.jb_mobile.commons.BaseVH

@@ -11,8 +11,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
-import work.curioustools.core_android.setVisible
-import work.curioustools.core_android.showToastFromFragment
+import work.curioustools.curiousutils.core_droidjet.extensions.setVisible
+import work.curioustools.curiousutils.core_droidjet.extensions.showToastFromFragment
 import work.curioustools.jb_mobile.R
 import work.curioustools.jb_mobile.commons.BaseHiltFragmentVB
 import work.curioustools.jb_mobile.commons.BaseListModel
@@ -22,7 +22,7 @@ import work.curioustools.jb_mobile.modules.dashboard.data_apis.SearchBooksReques
 import work.curioustools.jb_mobile.modules.dashboard.ui_adapters.AllBooksAdapter
 import work.curioustools.jb_mobile.modules.dashboard.ui_models.BookModel
 import work.curioustools.jb_mobile.modules.dashboard.ui_viewmodel.DashboardViewModel
-import work.curioustools.third_party_network.base_arch.BaseResponse
+import work.curioustools.third_party_network.arch_network.BaseResponse
 
 @SuppressLint("SetTextI18n")
 class SearchFragment : BaseHiltFragmentVB<FragmentSearchBinding>(){

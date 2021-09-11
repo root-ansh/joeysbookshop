@@ -3,19 +3,10 @@ package work.curioustools.jb_mobile.commons
 import android.annotation.SuppressLint
 import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewbinding.ViewBinding
-
-interface BaseListModel
-
-abstract class BaseVH(binding: ViewBinding) : RecyclerView.ViewHolder(binding.root) {
-    abstract fun bindData(model: BaseListModel, payload: Any? = null)//todo move to package
-}
 
 
 abstract class BaseRvAdapter<VH : BaseVH> : RecyclerView.Adapter<VH>() {
     private val entries = mutableListOf<BaseListModel>()//todo move to package
-
-
 
     abstract fun onBindVH(holder: VH,position: Int,payloads: MutableList<Any>? =null)
 

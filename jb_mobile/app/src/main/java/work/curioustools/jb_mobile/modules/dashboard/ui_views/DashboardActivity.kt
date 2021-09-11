@@ -4,7 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
-import work.curioustools.core_android.*
+import work.curioustools.curiousutils.core_droidjet.extensions.*
 import work.curioustools.jb_mobile.R
 import work.curioustools.jb_mobile.commons.BaseHiltActivityVB
 import work.curioustools.jb_mobile.databinding.ActivityDashboardBinding

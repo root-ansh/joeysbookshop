@@ -8,15 +8,15 @@ import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
-import work.curioustools.core_android.*
+import work.curioustools.core_jdk.toIntSafe
+import work.curioustools.curiousutils.core_droidjet.extensions.*
 import work.curioustools.jb_mobile.R
 import work.curioustools.jb_mobile.commons.BaseHiltActivityVB
 import work.curioustools.jb_mobile.databinding.ActivityDetailsBinding
 import work.curioustools.jb_mobile.modules.dashboard.data_apis.DashboardApi
 import work.curioustools.jb_mobile.modules.dashboard.ui_models.BookModel
 import work.curioustools.jb_mobile.modules.dashboard.ui_viewmodel.DashboardViewModel
-import work.curioustools.jb_mobile.commons.toIntSafe
-import work.curioustools.third_party_network.base_arch.BaseResponse
+import work.curioustools.third_party_network.arch_network.BaseResponse
 import work.curioustools.third_party_network.extensions.loadImageFromInternet
 
 class DetailsActivity : BaseHiltActivityVB<ActivityDetailsBinding>() {

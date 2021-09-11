@@ -1,14 +1,12 @@
 package work.curioustools.jb_mobile.modules.dashboard.ui_views
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
-import work.curioustools.core_android.setVisible
-import work.curioustools.core_android.showToastFromFragment
+import work.curioustools.curiousutils.core_droidjet.extensions.setVisible
+import work.curioustools.curiousutils.core_droidjet.extensions.showToastFromFragment
 
 import work.curioustools.jb_mobile.commons.BaseHiltFragmentVB
 import work.curioustools.jb_mobile.commons.BaseListModel
@@ -17,7 +15,7 @@ import work.curioustools.jb_mobile.modules.dashboard.data_apis.DashboardApi
 import work.curioustools.jb_mobile.modules.dashboard.ui_adapters.AllBooksAdapter
 import work.curioustools.jb_mobile.modules.dashboard.ui_models.BookModel
 import work.curioustools.jb_mobile.modules.dashboard.ui_viewmodel.DashboardViewModel
-import work.curioustools.third_party_network.base_arch.BaseResponse
+import work.curioustools.third_party_network.arch_network.BaseResponse
 
 class DashBoardFragment : BaseHiltFragmentVB<FragmentDashboardBinding>(){
 
