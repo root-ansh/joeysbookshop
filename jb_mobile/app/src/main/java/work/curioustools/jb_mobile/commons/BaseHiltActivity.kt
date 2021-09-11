@@ -4,8 +4,11 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import work.curioustools.jetpack_lifecycles.VBHolder
@@ -19,7 +22,7 @@ abstract class BaseHiltActivity:AppCompatActivity(){//todo core-android-hilt
         Handler(looper)
     }
 }
- abstract class BaseHiltActivityVB<VB:ViewBinding>:BaseHiltActivity(), VBHolder<VB> by VBHolderImpl() {
+abstract class BaseHiltActivityVB<VB:ViewBinding>:BaseHiltActivity(), VBHolder<VB> by VBHolderImpl() {
      override fun onCreate(savedInstanceState: Bundle?) {
          super.onCreate(savedInstanceState)
          getBindingForComponent(layoutInflater).setContentViewFor(this)
@@ -31,7 +34,31 @@ abstract class BaseHiltActivity:AppCompatActivity(){//todo core-android-hilt
 
  }
 
-abstract class BaseCommonActivity:AppCompatActivity(){  //todo core-android-hilt
+@AndroidEntryPoint
+abstract class BaseHiltFragment : Fragment() {
+}
+
+abstract class BaseHiltFragmentVB<VB : ViewBinding> :
+    BaseHiltFragment(),
+    VBHolder<VB> by VBHolderImpl() {
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return getBindingForThisComponent(inflater, container, savedInstanceState).registeredRoot(this)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setup()
+    }
+
+    abstract fun getBindingForThisComponent(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): VB
+    abstract fun setup()
+}
+
+
+/////=============non hilt
+
+abstract class BaseCommonActivity:AppCompatActivity(){
 
     val activityHandler: Handler by lazy {
         val looper = Looper.getMainLooper()
@@ -46,5 +73,21 @@ abstract class BaseCommonActivityVB<VB:ViewBinding>:BaseCommonActivity(), VBHold
 
     }
     abstract fun getBindingForComponent(layoutInflater: LayoutInflater):VB
+    abstract fun setup()
+}
+
+abstract class BaseCommonFragment : Fragment()
+abstract class BaseCommonFragmentVB<VB : ViewBinding> : BaseCommonFragment(), VBHolder<VB> by VBHolderImpl() {
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return getBindingForThisComponent(inflater, container, savedInstanceState).registeredRoot(this)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setup()
+    }
+
+    abstract fun getBindingForThisComponent(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): VB
     abstract fun setup()
 }
