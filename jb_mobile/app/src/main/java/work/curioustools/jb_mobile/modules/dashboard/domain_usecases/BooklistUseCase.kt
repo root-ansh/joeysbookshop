@@ -4,9 +4,9 @@ import work.curioustools.jb_mobile.modules.dashboard.data_apis.BookItemDto
 import work.curioustools.jb_mobile.modules.dashboard.data_apis.DeleteBookRequest
 import work.curioustools.jb_mobile.modules.dashboard.data_apis.SearchBooksRequest
 import work.curioustools.jb_mobile.modules.dashboard.data_repos.DashboardRepo
-import work.curioustools.jb_mobile.utils.third_party_libs.network_utils.BaseConcurrencyUseCase
-import work.curioustools.jb_mobile.utils.third_party_libs.network_utils.BaseDto
-import work.curioustools.jb_mobile.utils.third_party_libs.network_utils.BaseResponse
+import work.curioustools.third_party_network.base_arch.BaseConcurrencyUseCase
+import work.curioustools.third_party_network.base_arch.BaseDto
+import work.curioustools.third_party_network.base_arch.BaseResponse
 import javax.inject.Inject
 
 class BookListUseCase @Inject constructor(private val repo: DashboardRepo) :

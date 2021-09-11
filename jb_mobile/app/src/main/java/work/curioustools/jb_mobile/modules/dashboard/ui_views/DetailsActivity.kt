@@ -1,6 +1,5 @@
 package work.curioustools.jb_mobile.modules.dashboard.ui_views
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -19,10 +18,10 @@ import work.curioustools.jb_mobile.databinding.ActivityDetailsBinding
 import work.curioustools.jb_mobile.modules.dashboard.data_apis.DashboardApi
 import work.curioustools.jb_mobile.modules.dashboard.ui_models.BookModel
 import work.curioustools.jb_mobile.modules.dashboard.ui_viewmodel.DashboardViewModel
-import work.curioustools.jb_mobile.utils.third_party_libs.network_utils.BaseResponse
-import work.curioustools.jb_mobile.utils.toIntSafe
+import work.curioustools.jb_mobile.commons.toIntSafe
 import work.curioustools.jetpack_lifecycles.VBHolder
 import work.curioustools.jetpack_lifecycles.VBHolderImpl
+import work.curioustools.third_party_network.base_arch.BaseResponse
 import work.curioustools.third_party_network.extensions.loadImageFromInternet
 
 

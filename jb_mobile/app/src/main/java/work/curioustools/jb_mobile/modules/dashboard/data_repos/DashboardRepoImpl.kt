@@ -4,10 +4,11 @@ import work.curioustools.jb_mobile.modules.dashboard.data_apis.BookItemDto
 import work.curioustools.jb_mobile.modules.dashboard.data_apis.DashboardApi
 import work.curioustools.jb_mobile.modules.dashboard.data_apis.DeleteBookRequest
 import work.curioustools.jb_mobile.modules.dashboard.data_apis.SearchBooksRequest
-import work.curioustools.jb_mobile.utils.third_party_libs.network_utils.BaseDto
-import work.curioustools.jb_mobile.utils.third_party_libs.network_utils.BaseResponse
-import work.curioustools.jb_mobile.utils.third_party_libs.network_utils.convert
-import work.curioustools.jb_mobile.utils.third_party_libs.network_utils.executeAndUnify
+import work.curioustools.third_party_network.base_arch.BaseDto
+
+import work.curioustools.third_party_network.base_arch.BaseResponse
+import work.curioustools.third_party_network.base_arch.convertTo
+import work.curioustools.third_party_network.extensions.executeAndUnify
 import javax.inject.Inject
 
 
@@ -15,7 +16,7 @@ class DashboardRepoImpl @Inject constructor(private val dashboardApi: DashboardA
     DashboardRepo {
 
     override suspend fun getBooksList(): BaseResponse<List<BookItemDto>?> {
-        return dashboardApi.getBookList().executeAndUnify().convert { it }
+        return dashboardApi.getBookList().executeAndUnify().convertTo  { it }
     }
 
     override suspend fun searchBooks(searchBooksRequest: SearchBooksRequest): BaseResponse<List<BookItemDto>?> {
@@ -26,15 +27,15 @@ class DashboardRepoImpl @Inject constructor(private val dashboardApi: DashboardA
             author = searchBooksRequest.author,
             title = searchBooksRequest.title,
             minPages = searchBooksRequest.minPages
-        ).executeAndUnify().convert { it }
+        ).executeAndUnify().convertTo { it }
     }
 
     override suspend fun updateBook(booksRequest: BookItemDto): BaseResponse<BaseDto?> {
-        return dashboardApi.updateBook(booksRequest).executeAndUnify().convert { it }
+        return dashboardApi.updateBook(booksRequest).executeAndUnify().convertTo { it }
     }
 
     override suspend fun deleteBook(booksRequest: DeleteBookRequest): BaseResponse<BaseDto?> {
-        return dashboardApi.deleteBook(booksRequest).executeAndUnify().convert { it }
+        return dashboardApi.deleteBook(booksRequest).executeAndUnify().convertTo { it }
     }
 
 }

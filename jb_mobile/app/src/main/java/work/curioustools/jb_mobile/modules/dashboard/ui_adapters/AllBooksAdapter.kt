@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
+import work.curioustools.core_android.rvInflater
 import work.curioustools.jb_mobile.commons.BaseListModel
 import work.curioustools.jb_mobile.commons.BaseRvAdapter
 import work.curioustools.jb_mobile.commons.BaseVH
@@ -21,7 +22,7 @@ class AllBooksAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseVH {
         val uiType = BookModel.BookUiType.getTypeByID(viewType)
-        val inflater = LayoutInflater.from(parent.context)
+        val inflater = parent.rvInflater()
         return when(uiType){
             BookModel.BookUiType.GRID -> BookVerticalVH(
                 ItemDashboardBookVerticalBinding.inflate(inflater,null,false),

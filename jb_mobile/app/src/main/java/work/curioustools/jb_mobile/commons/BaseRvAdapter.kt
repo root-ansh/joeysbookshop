@@ -8,12 +8,12 @@ import androidx.viewbinding.ViewBinding
 interface BaseListModel
 
 abstract class BaseVH(binding: ViewBinding) : RecyclerView.ViewHolder(binding.root) {
-    abstract fun bindData(model: BaseListModel, payload: Any? = null)
+    abstract fun bindData(model: BaseListModel, payload: Any? = null)//todo move to package
 }
 
 
 abstract class BaseRvAdapter<VH : BaseVH> : RecyclerView.Adapter<VH>() {
-    private val entries = mutableListOf<BaseListModel>()
+    private val entries = mutableListOf<BaseListModel>()//todo move to package
 
 
 

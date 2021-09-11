@@ -14,8 +14,7 @@ import work.curioustools.jb_mobile.modules.dashboard.domain_usecases.UpdateBookU
 import work.curioustools.jb_mobile.modules.dashboard.ui_models.BookModel
 import work.curioustools.jb_mobile.modules.dashboard.ui_models.toDto
 import work.curioustools.jb_mobile.modules.dashboard.ui_models.toModel
-import work.curioustools.jb_mobile.utils.third_party_libs.network_utils.BaseDto
-import work.curioustools.jb_mobile.utils.third_party_libs.network_utils.BaseResponse
+import work.curioustools.third_party_network.base_arch.BaseResponse
 import javax.inject.Inject
 
 @HiltViewModel

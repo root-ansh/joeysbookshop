@@ -22,9 +22,9 @@ import work.curioustools.jb_mobile.modules.dashboard.data_apis.SearchBooksReques
 import work.curioustools.jb_mobile.modules.dashboard.ui_adapters.AllBooksAdapter
 import work.curioustools.jb_mobile.modules.dashboard.ui_models.BookModel
 import work.curioustools.jb_mobile.modules.dashboard.ui_viewmodel.DashboardViewModel
-import work.curioustools.jb_mobile.utils.third_party_libs.network_utils.BaseResponse
 import work.curioustools.jetpack_lifecycles.VBHolder
 import work.curioustools.jetpack_lifecycles.VBHolderImpl
+import work.curioustools.third_party_network.base_arch.BaseResponse
 
 @SuppressLint("SetTextI18n")
 class SearchFragment : BaseHiltFragment(), VBHolder<FragmentSearchBinding> by VBHolderImpl() {

@@ -2,7 +2,7 @@ package work.curioustools.jb_mobile.modules.dashboard.data_apis
 
 import retrofit2.Call
 import retrofit2.http.*
-import work.curioustools.jb_mobile.utils.third_party_libs.network_utils.BaseDto
+import work.curioustools.third_party_network.base_arch.BaseDto
 
 interface DashboardApi {
 
