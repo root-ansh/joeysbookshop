@@ -4,12 +4,14 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
+import dagger.hilt.android.AndroidEntryPoint
+import work.curioustools.curiousutils.core_droidjet.arch.BaseCommonActivityVB
 import work.curioustools.curiousutils.core_droidjet.extensions.*
 import work.curioustools.jb_mobile.R
-import work.curioustools.jb_mobile.commons.BaseHiltActivityVB
 import work.curioustools.jb_mobile.databinding.ActivityDashboardBinding
 
-class DashboardActivity : BaseHiltActivityVB<ActivityDashboardBinding>(){
+@AndroidEntryPoint
+class DashboardActivity : BaseCommonActivityVB<ActivityDashboardBinding>(){
     override fun getBindingForComponent(layoutInflater: LayoutInflater)= ActivityDashboardBinding.inflate(layoutInflater)
 
     override fun setup() {

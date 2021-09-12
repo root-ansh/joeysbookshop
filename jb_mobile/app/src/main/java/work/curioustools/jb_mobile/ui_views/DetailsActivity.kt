@@ -8,10 +8,11 @@ import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
+import dagger.hilt.android.AndroidEntryPoint
 import work.curioustools.core_jdk.toIntSafe
+import work.curioustools.curiousutils.core_droidjet.arch.BaseCommonActivityVB
 import work.curioustools.curiousutils.core_droidjet.extensions.*
 import work.curioustools.jb_mobile.R
-import work.curioustools.jb_mobile.commons.BaseHiltActivityVB
 import work.curioustools.jb_mobile.databinding.ActivityDetailsBinding
 import work.curioustools.jb_mobile.data_apis.DashboardApi
 import work.curioustools.jb_mobile.ui_models.BookModel
@@ -19,7 +20,8 @@ import work.curioustools.jb_mobile.ui_viewmodel.DashboardViewModel
 import work.curioustools.third_party_network.arch_network.BaseResponse
 import work.curioustools.third_party_network.extensions.loadImageFromInternet
 
-class DetailsActivity : BaseHiltActivityVB<ActivityDetailsBinding>() {
+@AndroidEntryPoint
+class DetailsActivity : BaseCommonActivityVB<ActivityDetailsBinding>() {
 
     private var isEditing = false
 

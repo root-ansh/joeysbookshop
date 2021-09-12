@@ -7,8 +7,8 @@ import work.curioustools.jb_mobile.databinding.ItemDashboardBookHighlightBinding
 import work.curioustools.jb_mobile.ui_models.BookModel
 import work.curioustools.curiousutils.core_droidjet.arch.BaseListModel
 import work.curioustools.curiousutils.core_droidjet.arch.BaseVHWithVB
+import work.curioustools.curiousutils.core_droidjet.custom.QuickAdapter
 import work.curioustools.jb_mobile.R
-import work.curioustools.jb_mobile.commons.QuickAdapter
 import work.curioustools.third_party_network.extensions.loadImageFromInternet
 
 class BookHighlightVH(

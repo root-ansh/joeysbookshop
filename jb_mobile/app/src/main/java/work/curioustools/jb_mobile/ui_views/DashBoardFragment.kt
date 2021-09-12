@@ -5,9 +5,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
+import dagger.hilt.android.AndroidEntryPoint
+import work.curioustools.curiousutils.core_droidjet.arch.BaseCommonFragmentVB
 import work.curioustools.curiousutils.core_droidjet.extensions.showToastFromFragment
 
-import work.curioustools.jb_mobile.commons.BaseHiltFragmentVB
 import work.curioustools.curiousutils.core_droidjet.arch.BaseListModel
 import work.curioustools.curiousutils.core_droidjet.extensions.setVisible
 import work.curioustools.jb_mobile.databinding.FragmentDashboardBinding
@@ -17,9 +18,11 @@ import work.curioustools.jb_mobile.ui_models.BookModel
 import work.curioustools.jb_mobile.ui_viewmodel.DashboardViewModel
 import work.curioustools.third_party_network.arch_network.BaseResponse
 
-class DashBoardFragment : BaseHiltFragmentVB<FragmentDashboardBinding>(){
+@AndroidEntryPoint
+class DashBoardFragment : BaseCommonFragmentVB<FragmentDashboardBinding>(){
 
     private val dashboardViewModel: DashboardViewModel by viewModels()
+
     private val dashboardAdp = AllBooksAdapter(DashboardApi.BASE_URL, ::onBookClick)
 
     override fun getBindingForThisComponent(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?)= FragmentDashboardBinding.inflate(inflater,container,false)

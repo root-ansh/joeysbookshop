@@ -1,4 +1,4 @@
-package work.curioustools.jb_mobile.commons
+package work.curioustools.jb_mobile.data_di
 
 import com.google.gson.Gson
 import com.squareup.moshi.Moshi
@@ -12,6 +12,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.converter.scalars.ScalarsConverterFactory
+import work.curioustools.jb_mobile.JoeBookShopApp
 import work.curioustools.third_party_network.interceptors.OkHttpLoggingInterceptorUtils
 import work.curioustools.third_party_network.utils.*
 import java.util.concurrent.TimeUnit
@@ -62,7 +63,7 @@ class NetworkDI {
     @Singleton
     @Provides
     fun getOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
-        return if (AppConfig.isDebug()) {
+        return if (JoeBookShopApp.isDebug()) {
             OkHttpUtils.getClient(
                 loggingInterceptor = loggingInterceptor
             )

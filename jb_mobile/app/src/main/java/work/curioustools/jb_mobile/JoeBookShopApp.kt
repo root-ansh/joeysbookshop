@@ -11,4 +11,9 @@ class JoeBookShopApp:Application() {
         super.attachBaseContext(base)
         MultiDex.install(this)
     }
+
+
+    companion object{
+        fun isDebug() : Boolean = BuildConfig.DEBUG
+    }
 }
