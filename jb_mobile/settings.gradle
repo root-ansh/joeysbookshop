@@ -7,4 +7,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "jb_mobile"
-include ':app'
+include(":app")
